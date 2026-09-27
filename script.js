@@ -198,3 +198,44 @@ const startRezepte = [
     ]
   }
 ];
+
+/**
+ * Laedt die Rezepte aus dem localStorage.
+ * Beim allerersten Aufruf werden die Startrezepte gespeichert und zurueckgegeben.
+ * @returns {Array<Object>} Liste aller Rezepte
+ */
+function ladeRezepte() {
+  const gespeichert = localStorage.getItem(STORAGE_KEY);
+
+  if (gespeichert === null) {
+    speichereRezepte(startRezepte);
+    return startRezepte;
+  }
+
+  try {
+    return JSON.parse(gespeichert);
+  } catch (fehler) {
+    console.error("Gespeicherte Rezepte konnten nicht gelesen werden.", fehler);
+    return startRezepte;
+  }
+}
+
+/**
+ * Speichert die uebergebene Rezeptliste im localStorage.
+ * @param {Array<Object>} rezepte
+ */
+function speichereRezepte(rezepte) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(rezepte));
+}
+
+/**
+ * Sucht ein Rezept anhand seiner id.
+ * @param {number} id
+ * @returns {Object|undefined}
+ */
+function findeRezeptNachId(id) {
+  const rezepte = ladeRezepte();
+  return rezepte.find(function (rezept) {
+    return rezept.id === id;
+  });
+}
