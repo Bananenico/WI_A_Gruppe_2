@@ -36,6 +36,7 @@
                 <input type="search" id="suche" name="suche" placeholder="Rezeptname oder Zutat"> 
             </div> 
 
+            <!-- Dropdown-Menü zum Filtern der Schwierigkeit-->
             <fieldset>
                 <legend> Schwierigkeit </legend>
                 <label for="schwierigkeit"> Schwierigkeit </label>
@@ -47,6 +48,7 @@
                 </select>
             </fieldset>
 
+            <!-- Radiobuttons zum Filtern des Geschmacks-->
             <fieldset>
                 <legend> Süß oder Herzhaft </legend>
                 <label>
@@ -59,6 +61,26 @@
                     <input type="radio" name="geschmack" value="herzhaft"> Herzhaft
                 </label>
             </fieldset>
+
+            <!-- Radiobuttons zum Filtern der Ernährungsart-->
+            <fieldset>
+                    <legend> Ernährungsart </legend>
+                    <label>
+                        <input type="radio" name="ernaehrung" value="alle" checked> Alle
+                    </label>
+                    <label>
+                        <input type="radio" name="ernaehrung" value="vegan"> Vegan
+                    </label>
+                    <label>
+                        <input type="radio" name="ernaehrung" value="vegetarisch"> Vegetarisch
+                    </label>
+                    <label>
+                        <input type="radio" name="ernaehrung" value="fleisch"> Mit Fleisch
+                    </label>
+                    <label>
+                        <input type="radio" name="ernaehrung" value="fisch"> Fisch
+                    </label>
+                </fieldset>
 
 
 
