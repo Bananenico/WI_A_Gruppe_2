@@ -13,8 +13,12 @@ zutatHinzufuegenButton.addEventListener("click", function () {
         <input type="number" class="menge" placeholder="Menge" min="0">
         <input type="text" class="einheit" placeholder="Einheit">
         <input type="text" class="zutat-name" placeholder="Zutat">
-        <button type="button" class="zutat-entfernen">Entfernen</button>
+        <button type="button" class="zutat-entfernen" onclick="entferneZutat(this)">Entfernen</button>
     `;
 
     zutatenContainer.appendChild(neueZutat);
 });
+function entferneZutat(button) {
+    const zutat = button.parentElement;
+    zutat.remove();
+}
