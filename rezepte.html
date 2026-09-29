@@ -15,10 +15,10 @@
             <nav aria-label="Hauptnavigation">
                 <ul>
                     <li>
-                        <a href="index.html" aria-current="page"> Start </a>
+                        <a href="index.html"> Start </a>
                     </li>
                     <li>
-                        <a href="rezepte.html"> Rezepte </a>
+                        <a href="rezepte.html" aria-current="page"> Rezepte </a>
                     </li>
                     <li>
                         <a href="neues-rezept.html"> Rezept hinzufügen </a>
@@ -28,6 +28,71 @@
         </header>
 
         <main>
+            <h1> Alle Rezepte </h1>
+            <form id ="filter-formular">
+                <!-- Suchfeld mithilfe von type="search" -->
+                <div>
+                    <label for="suche"> Suche </label>
+                    <input type="search" id="suche" name="suche" placeholder="Rezeptname oder Zutat"> 
+                </div> 
+
+                <!-- Dropdown-Menü zum Filtern der Schwierigkeit-->
+                <fieldset>
+                    <legend> Schwierigkeit </legend>
+                    <label for="schwierigkeit"> Schwierigkeit </label>
+                    <select id="schwierigkeit" name="schwierigkeit">
+                        <option value="alle"> Alle </option>
+                        <option value="Anfaenger"> Anfänger </option>
+                        <option value="Mittel"> Mittel </option>
+                        <option value="Schwer"> Schwer </option>
+                    </select>
+                </fieldset>
+
+                <!-- Radiobuttons zum Filtern des Geschmacks-->
+                <fieldset>
+                    <legend> Süß oder Herzhaft </legend>
+                    <label>
+                        <input type="radio" name="geschmack" value="alle" checked> Alle
+                    </label>
+                    <label>
+                        <input type="radio" name="geschmack" value="suess"> Süß
+                    </label>
+                    <label>
+                        <input type="radio" name="geschmack" value="herzhaft"> Herzhaft
+                    </label>
+                </fieldset>
+
+                <!-- Radiobuttons zum Filtern der Ernährungsart-->
+                <fieldset>
+                    <legend> Ernährungsart </legend>
+                    <label>
+                        <input type="radio" name="ernaehrung" value="alle" checked> Alle
+                    </label>
+                    <label>
+                        <input type="radio" name="ernaehrung" value="vegan"> Vegan
+                    </label>
+                    <label>
+                        <input type="radio" name="ernaehrung" value="vegetarisch"> Vegetarisch
+                    </label>
+                    <label>
+                        <input type="radio" name="ernaehrung" value="fleisch"> Mit Fleisch
+                    </label>
+                    <label>
+                        <input type="radio" name="ernaehrung" value="fisch"> Fisch
+                    </label>
+                </fieldset>
+
+                <div>
+                    <label for ="max-dauer"> Maximale Dauer in Minuten</label>
+                    <input type="number" id="max-dauer" name="max-dauer" min="0" step="5" placeholder="z.B. 60">
+                </div>
+
+                <button type="submit"> Filtern </button>
+                <button type="reset"> Filter zurücksetzen</button>
+
+            </form>
+
+
 
         </main>
         
