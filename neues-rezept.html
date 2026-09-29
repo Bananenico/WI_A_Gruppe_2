@@ -1,3 +1,4 @@
+<!-- WI_A_Gruppe_2 -->
 <!DOCTYPE html>
 <html lang="de">
 
@@ -13,9 +14,67 @@
 <body>
 
     <main>
-        <h1>Neues Rezept erstellen</h1>
+         <h1>Neues Rezept erstellen</h1>
+
+        <form id="rezept-form">
+
+            <label for="titel">Rezeptname:</label>
+            <input type="text" id="titel" name="titel">
+
+            <label for="kategorie">Kategorie:</label>
+            <select id="kategorie" name="kategorie">
+                <option value="">Bitte auswählen</option>
+                <option value="Kochen">Kochen</option>
+                <option value="Backen">Backen</option>
+            </select>
+
+            <label for="ernaehrung">Ernährungsform:</label>
+            <select id="ernaehrung" name="ernaehrung">
+                <option value="">Bitte auswählen</option>
+                <option value="vegan">Vegan</option>
+                <option value="vegetarisch">Vegetarisch</option>
+                <option value="fleisch">Fleisch</option>
+                <option value="fisch">Fisch</option>
+            </select>
+
+            <label for="schwierigkeit">Schwierigkeit:</label>
+            <select id="schwierigkeit" name="schwierigkeit">
+                <option value="">Bitte auswählen</option>
+                <option value="Anfaenger">Anfänger</option>
+                <option value="Mittel">Mittel</option>
+                <option value="Fortgeschritten">Fortgeschritten</option>
+            </select>
+
+            <label for="dauer">Zubereitungszeit in Minuten:</label>
+            <input type="number" id="dauer" name="dauer" min="1">
+
+            <label for="portionen">Portionen:</label>
+            <input type="number" id="portionen" name="portionen" min="1">
+
+            <label>Zutaten:</label>
+
+            <div id="zutaten-container">
+                <div class="zutat">
+                    <input type="number" class="menge" placeholder="Menge" min="0">
+                    <input type="text" class="einheit" placeholder="Einheit">
+                    <input type="text" class="zutat-name" placeholder="Zutat">
+                    <button type="button" class="zutat-entfernen">Entfernen</button>
+                </div>
+            </div>
+
+            <button type="button" id="zutat-hinzufuegen">
+                + Zutat hinzufügen
+            </button>
+
+            <label for="zubereitung">Zubereitung:</label>
+            <textarea id="zubereitung" name="zubereitung" rows="6"></textarea>
+
+            <button type="submit">Rezept erstellen</button>
+
+        </form>
     </main>
 
+    <script src="form.js"></script>
 </body>
 
 </html>
