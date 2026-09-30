@@ -286,3 +286,44 @@ document.addEventListener("DOMContentLoaded", function () {
   const alleRezepte = ladeRezepte();
   zeigeRezepte(alleRezepte);
 });
+
+/**
+ * Prueft, ob ein Rezept zu einem Suchbegriff passt (Titel oder Zutatenname).
+ * @param {Object} rezept
+ * @param {string} suchbegriff
+ * @returns {boolean}
+ */
+function rezeptPasstZurSuche(rezept, suchbegriff) {
+  const begriff = suchbegriff.trim().toLowerCase();
+
+  if (begriff === "") {
+    return true;
+  }
+
+  const titelPasst = rezept.titel.toLowerCase().includes(begriff);
+  const zutatPasst = rezept.zutaten.some(function (zutat) {
+    return zutat.name.toLowerCase().includes(begriff);
+  });
+
+  return titelPasst || zutatPasst;
+}
+
+// Filterformular: bei Absenden nur nach dem Suchbegriff filtern
+document.addEventListener("DOMContentLoaded", function () {
+  const filterFormular = document.getElementById("filter-formular");
+  if (filterFormular === null) {
+    return;
+  }
+
+  filterFormular.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const suchbegriff = document.getElementById("suche").value;
+    const alleRezepte = ladeRezepte();
+    const gefundeneRezepte = alleRezepte.filter(function (rezept) {
+      return rezeptPasstZurSuche(rezept, suchbegriff);
+    });
+
+    zeigeRezepte(gefundeneRezepte);
+  });
+});
