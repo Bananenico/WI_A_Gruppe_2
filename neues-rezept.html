@@ -5,16 +5,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Neues Rezept erstellen</title>
-
+    <title> Neues Rezept - Rezeptbuch </title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
+    <header>
+        <a href="index.html"> Rezeptbuch </a>
+        <nav aria-label="Hauptnavigation">
+            <ul>
+                <li>
+                    <a href="index.html"> Start </a>
+                </li>
+                <li>
+                    <a href="rezepte.html"> Rezepte </a>
+                </li>
+                <li>
+                    <a href="neues-rezept.html" aria-current="page"> Rezept hinzufügen </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
-         <h1>Neues Rezept erstellen</h1>
+        <h1>Neues Rezept erstellen</h1>
 
         <form id="rezept-form">
 
@@ -80,8 +95,9 @@
 
         </form>
     </main>
-
-    <script src="form.js"></script>
+    <footer>
+        <p> WI_A_Gruppe_2</p>
+    </footer>
 </body>
 
 </html>

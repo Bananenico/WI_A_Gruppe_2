@@ -1,1 +1,51 @@
 <!-- WI_A_Gruppe_2 -->
+ <!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Rezeptdetails - Rezeptbuch </title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+    </head>
+
+    <body>
+        <header>
+            <a href="index.html"> Rezeptbuch </a>
+            <nav aria-label="Hauptnavigation">
+                <ul>
+                 <li>
+                        <a href="index.html"> Start </a>
+                    </li>
+                    <li>
+                        <a href="rezepte.html"> Rezepte </a>
+                    </li>
+                 <li>
+                     <a href="neues-rezept.html"> Rezept hinzufügen </a>
+                 </li>
+             </ul>
+          </nav>
+        </header>
+
+        <!-- Im Browser noch kein Inhalt, da detail-title, etc. erst durch die Java-Script-Logik befüllt werden-->
+        <main>
+            <a href="rezepte.html" class="zurueck-link"> Zurück zur Übersicht </a>
+
+            <article>
+                <h1 id="detail-title"></h1>
+                <img id="detail-bild" src="" alt="">
+                <p id="detail-meta"></p>
+
+                <section aria-labelledby="zutaten-title">
+                    <h2 id="zubereitung-title"> Zubereitung </h2>
+                    <ol id="detail-zubereitung"></ol>
+                </section>
+            </article>
+        </main>
+
+        <footer>
+            <p> WI_A_Gruppe_2 </p>
+        </footer>
+    </body>
+</html>
