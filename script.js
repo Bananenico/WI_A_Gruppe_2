@@ -247,3 +247,42 @@ function findeRezeptNachId(id) {
     return rezept.id === id;
   });
 }
+
+/**
+ * Erzeugt das HTML fuer eine einzelne Rezeptkarte.
+ * @param {Object} rezept
+ * @returns {string} HTML-String der Karte
+ */
+function erstelleRezeptKarte(rezept) {
+  return `
+    <article class="rezept-karte">
+      <img src="${rezept.bild}" alt="${rezept.titel}">
+      <h3><a href="details-rezept.html?id=${rezept.id}">${rezept.titel}</a></h3>
+      <p>${rezept.dauerMinuten} Minuten &middot; ${rezept.schwierigkeit}</p>
+    </article>
+  `;
+}
+
+/**
+ * Zeigt die uebergebene Rezeptliste im Ergebnisbereich der Rezepteseite an.
+ * @param {Array<Object>} rezepte
+ */
+function zeigeRezepte(rezepte) {
+  const liste = document.getElementById("rezept-liste");
+  if (liste === null) {
+    return;
+  }
+
+  if (rezepte.length === 0) {
+    liste.innerHTML = "<p>Keine Rezepte gefunden.</p>";
+    return;
+  }
+
+  liste.innerHTML = rezepte.map(erstelleRezeptKarte).join("");
+}
+
+// Beim Laden von rezepte.html direkt alle Rezepte anzeigen
+document.addEventListener("DOMContentLoaded", function () {
+  const alleRezepte = ladeRezepte();
+  zeigeRezepte(alleRezepte);
+});
