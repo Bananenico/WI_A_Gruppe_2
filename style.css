@@ -1,1 +1,54 @@
 /* WI_A_Gruppe_2 */
+
+/* Sorgt dafür, dass padding und box nicht addiert werden sondern so bleiben wie sie definiert wurden */
+* {
+    box-sizing: border-box;
+}
+
+/* :root --> (Eigene Variablen, also --) gelten für das alle Dokumente*/
+:root {
+    --farbe-hintergrund: #FAFAF8;
+    --farbe-flaeche: #FFFFFF;
+    --farbe-text: #242220;
+    --farbe-text-schwach: #6B6560;
+    --farbe-akzent: #A6522E;
+    --farbe-akzent-hell: #FBEFE8;
+    --farbe-rahmen: #E5E1DB;
+
+    --radius-karte: 10px;
+    --radius-button: 8px;
+    --radius-pille: 999px;
+
+    --abstand-klein: 8px;
+    --abstand-mittel: 16px;
+    --abstand-gross: 32px;
+
+    --schrift: system-ui, "Segoe UI", sans-serif;
+}
+
+/* body sorgt benutzt die definierten Variablen und sorgt für sichtbare Veränderungen */
+body {
+    margin: 0;
+    font-family: var(--schrift);
+    background-color: var(--farbe-hintergrund);
+    color: var(--farbe-text);
+    line-height: 1.5;
+}
+/* Ähnliches auch im folgenden Abschnitt */
+h1, h2, h3 {
+    line-height: 1.2;
+    margin: 0 0 var(--abstand-klein);   /* margin 0 0 --> Setzt Außenabstand auf 0 Pixel für alle vier Seiten --> Erste 0 oben, unten | Zweite 0 lins, rechts*/
+}
+p {
+    margin: 0 0 var(--abstand-klein);
+}
+
+a {
+    color: var(--farbe-akzent);
+}
+
+img{
+    max-width: 100%;
+    display: block;
+}
+
