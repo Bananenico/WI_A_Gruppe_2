@@ -25,11 +25,11 @@
 
     --schrift: system-ui, "Segoe UI", sans-serif;
 }
-
+/* Base Reset */
 /* body sorgt benutzt die definierten Variablen und sorgt für sichtbare Veränderungen */
 body {
     margin: 0;
-    font-family: var(--schrift);
+    font-family: var(--schrift);                /* Bestimmt Schriftart */
     background-color: var(--farbe-hintergrund);
     color: var(--farbe-text);
     line-height: 1.5;
@@ -52,3 +52,34 @@ img{
     display: block;
 }
 
+/* Layout-Bereiche */
+header{
+    display: flex;                  /* Ordnet Logo-Link und Navigation nebeneinander an*/
+    align-items: center; 
+    justify-content: space-between; /* Logo nach links und Navigation nach rechts schieben */
+    flex-wrap: wrap;                /* Auf kleinen Bildschirmen wird Navigation auf neue Zeile umgebrochen */
+    gap: var(--abstand-klein);
+    padding: var(--abstand-mittel) var(--abstand-gross);
+    border-bottom: 1px solid var(--farbe-rahmen);
+}
+
+/* Vertikale Listr wird zur horizontalen Liste umgeändert */
+nav ul{                         /* Suche nach allen ul-Elementen in nav */
+    display: flex;
+    gap: var(--abstand-mittel);
+    list-style: none;
+    padding: 0;
+}
+
+/* aria-current="page" --> Aktive Seite in der man sich befindet wird hervorgehoben */
+nav a{                          /* Suche nach allen a-Elementen in nav */
+    color: var(--farbe-text-schwach);
+    font-size: 0.95rem; /* --> font-size für Schriftgröße und rem für 95% so groß wie Standard-Schriftgröße */
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+nav a[aria-current="page"]{     /* Suche nach allen a-Elementen in nav */
+    color: var(--farbe-text);
+    font-weight: 500;   /* Bestimmt die Dicke von Nav */
+    border-bottom-color: var(--farbe-akzent);
+}
