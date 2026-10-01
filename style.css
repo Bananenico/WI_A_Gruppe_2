@@ -62,6 +62,14 @@ header{
     padding: var(--abstand-mittel) var(--abstand-gross);
     border-bottom: 1px solid var(--farbe-rahmen);
 }
+header a {
+    text-decoration: none;
+}
+header > a {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--farbe-text);
+}
 
 /* Vertikale Listr wird zur horizontalen Liste umgeändert */
 nav ul{                         /* Suche nach allen ul-Elementen in nav */
