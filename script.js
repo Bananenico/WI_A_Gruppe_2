@@ -325,6 +325,19 @@ function rezeptPasstZumGeschmack(rezept, geschmack) {
 }
 
 /**
+ * Prueft, ob ein Rezept zur gewaehlten Ernaehrungsart passt.
+ * @param {Object} rezept
+ * @param {string} ernaehrung "alle", "vegan", "vegetarisch", "fleisch" oder "fisch"
+ * @returns {boolean}
+ */
+function rezeptPasstZurErnaehrung(rezept, ernaehrung) {
+  if (ernaehrung === "alle") {
+    return true;
+  }
+  return rezept.ernaehrung === ernaehrung;
+}
+
+/**
  * Prueft, ob ein Rezept zur gewaehlten Schwierigkeit passt.
  * @param {Object} rezept
  * @param {string} schwierigkeit "alle", "leicht", "mittel" oder "schwer"
@@ -350,12 +363,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const suchbegriff = document.getElementById("suche").value;
     const schwierigkeit = document.getElementById("schwierigkeit").value;
     const geschmack = document.querySelector('input[name="geschmack"]:checked').value;
+    const ernaehrung = document.querySelector('input[name="ernaehrung"]:checked').value;
     const alleRezepte = ladeRezepte();
 
     const gefundeneRezepte = alleRezepte.filter(function (rezept) {
       return rezeptPasstZurSuche(rezept, suchbegriff)
         && rezeptPasstZurSchwierigkeit(rezept, schwierigkeit)
-        && rezeptPasstZumGeschmack(rezept, geschmack);
+        && rezeptPasstZumGeschmack(rezept, geschmack)
+        && rezeptPasstZurErnaehrung(rezept, ernaehrung);
     });
 
     zeigeRezepte(gefundeneRezepte);
