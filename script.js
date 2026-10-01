@@ -91,7 +91,7 @@ const startRezepte = [
     kategorie: "Kochen",
     ernaehrung: "vegetarisch",
     geschmack: "herzhaft",
-    schwierigkeit: "Mittel",
+    schwierigkeit: "mittel",
     dauerMinuten: 78,
     portionen: 4,
     bild: "images/gemueselasagne.jpg",
@@ -115,7 +115,7 @@ const startRezepte = [
     kategorie: "Kochen",
     ernaehrung: "fisch",
     geschmack: "herzhaft",
-    schwierigkeit: "Mittel",
+    schwierigkeit: "mittel",
     dauerMinuten: 47,
     portionen: 2,
     bild: "images/lachs-ofengemuese.jpg",
@@ -139,7 +139,7 @@ const startRezepte = [
     kategorie: "Kochen",
     ernaehrung: "vegan",
     geschmack: "herzhaft",
-    schwierigkeit: "Mittel",
+    schwierigkeit: "mittel",
     dauerMinuten: 40,
     portionen: 4,
     bild: "images/risotto-pilze.jpg",
@@ -253,6 +253,21 @@ function findeRezeptNachId(id) {
  * @param {Object} rezept
  * @returns {string} HTML-String der Karte
  */
+/*
+function erstelleRezeptKarte(rezept) {
+  return `
+    <article class="rezept-karte">
+      <img class="rezept-bild" src="${rezept.bild}" alt="${rezept.titel}">
+      <h3 class="rezept-titel">${rezept.titel}</h3>
+      <p class="rezept-meta">${rezept.schwierigkeit} · ${rezept.dauerMinuten} Min. · ${rezept.geschmack} · ${rezept.ernaehrung}</p>
+      <a class="rezept-link" href="details-rezept.html?id=${rezept.id}">Details ansehen</a>
+    </article>
+  `;
+}
+*/
+
+//Andere Designmöglichkeit --> nun ist ein Link auf Details ansehen, dann kommt man auf die
+//genaueren Details. --> So habe ich später geplant, mit CSS zu designen.
 function erstelleRezeptKarte(rezept) {
   return `
     <article class="rezept-karte">

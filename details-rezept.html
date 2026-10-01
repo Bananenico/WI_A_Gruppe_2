@@ -28,17 +28,22 @@
           </nav>
         </header>
 
-        <!-- Im Browser noch kein Inhalt, da detail-title, etc. erst durch die Java-Script-Logik befüllt werden-->
+        <!-- Im Browser noch kein Inhalt, da detail-titel, etc. erst durch die Java-Script-Logik befüllt werden-->
         <main>
             <a href="rezepte.html" class="zurueck-link"> Zurück zur Übersicht </a>
 
             <article>
-                <h1 id="detail-title"></h1>
+                <h1 id="detail-titel"></h1>
                 <img id="detail-bild" src="" alt="">
                 <p id="detail-meta"></p>
 
-                <section aria-labelledby="zutaten-title">
-                    <h2 id="zubereitung-title"> Zubereitung </h2>
+                <section aria-labelledby="zutaten-titel">
+                    <h2 id="zutaten-titel"> Zutaten </h2>
+                    <ul id="detail-zutaten"></ul>
+                </section>
+
+                <section aria-labelledby="zubereitung-titel">
+                    <h2 id="zubereitung-titel"> Zubereitung </h2>
                     <ol id="detail-zubereitung"></ol>
                 </section>
             </article>
