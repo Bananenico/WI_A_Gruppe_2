@@ -325,6 +325,19 @@ function rezeptPasstZurSuche(rezept, suchbegriff) {
 }
 
 /**
+ * Prueft, ob ein Rezept zum gewaehlten Geschmack passt.
+ * @param {Object} rezept
+ * @param {string} geschmack "alle", "suess" oder "herzhaft"
+ * @returns {boolean}
+ */
+function rezeptPasstZumGeschmack(rezept, geschmack) {
+  if (geschmack === "alle") {
+    return true;
+  }
+  return rezept.geschmack === geschmack;
+}
+
+/**
  * Prueft, ob ein Rezept zur gewaehlten Schwierigkeit passt.
  * @param {Object} rezept
  * @param {string} schwierigkeit "alle", "leicht", "Mittel" oder "Schwer"
@@ -349,11 +362,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const suchbegriff = document.getElementById("suche").value;
     const schwierigkeit = document.getElementById("schwierigkeit").value;
+    const geschmack = document.querySelector('input[name="geschmack"]:checked').value;
     const alleRezepte = ladeRezepte();
 
     const gefundeneRezepte = alleRezepte.filter(function (rezept) {
       return rezeptPasstZurSuche(rezept, suchbegriff)
-        && rezeptPasstZurSchwierigkeit(rezept, schwierigkeit);
+        && rezeptPasstZurSchwierigkeit(rezept, schwierigkeit)
+        && rezeptPasstZumGeschmack(rezept, geschmack);
     });
 
     zeigeRezepte(gefundeneRezepte);
