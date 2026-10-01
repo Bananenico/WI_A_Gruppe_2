@@ -338,6 +338,19 @@ function rezeptPasstZurErnaehrung(rezept, ernaehrung) {
 }
 
 /**
+ * Prueft, ob die Zubereitungszeit eines Rezepts innerhalb der gewuenschten Hoechstdauer liegt.
+ * @param {Object} rezept
+ * @param {string} maxDauer Wert aus dem Eingabefeld, leer bedeutet keine Obergrenze
+ * @returns {boolean}
+ */
+function rezeptPasstZurDauer(rezept, maxDauer) {
+  if (maxDauer === "") {
+    return true;
+  }
+  return rezept.dauerMinuten <= Number(maxDauer);
+}
+
+/**
  * Prueft, ob ein Rezept zur gewaehlten Schwierigkeit passt.
  * @param {Object} rezept
  * @param {string} schwierigkeit "alle", "leicht", "mittel" oder "schwer"
@@ -364,13 +377,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const schwierigkeit = document.getElementById("schwierigkeit").value;
     const geschmack = document.querySelector('input[name="geschmack"]:checked').value;
     const ernaehrung = document.querySelector('input[name="ernaehrung"]:checked').value;
+    const maxDauer = document.getElementById("max-dauer").value;
     const alleRezepte = ladeRezepte();
 
     const gefundeneRezepte = alleRezepte.filter(function (rezept) {
       return rezeptPasstZurSuche(rezept, suchbegriff)
         && rezeptPasstZurSchwierigkeit(rezept, schwierigkeit)
         && rezeptPasstZumGeschmack(rezept, geschmack)
-        && rezeptPasstZurErnaehrung(rezept, ernaehrung);
+        && rezeptPasstZurErnaehrung(rezept, ernaehrung)
+        && rezeptPasstZurDauer(rezept, maxDauer);
     });
 
     zeigeRezepte(gefundeneRezepte);
