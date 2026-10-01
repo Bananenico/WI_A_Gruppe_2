@@ -253,19 +253,6 @@ function findeRezeptNachId(id) {
  * @param {Object} rezept
  * @returns {string} HTML-String der Karte
  */
-/*
-function erstelleRezeptKarte(rezept) {
-  return `
-    <article class="rezept-karte">
-      <img class="rezept-bild" src="${rezept.bild}" alt="${rezept.titel}">
-      <h3 class="rezept-titel">${rezept.titel}</h3>
-      <p class="rezept-meta">${rezept.schwierigkeit} · ${rezept.dauerMinuten} Min. · ${rezept.geschmack} · ${rezept.ernaehrung}</p>
-      <a class="rezept-link" href="details-rezept.html?id=${rezept.id}">Details ansehen</a>
-    </article>
-  `;
-}
-*/
-
 //Andere Designmöglichkeit --> nun ist ein Link auf Details ansehen, dann kommt man auf die
 //genaueren Details. --> So habe ich später geplant, mit CSS zu designen.
 function erstelleRezeptKarte(rezept) {
@@ -340,7 +327,7 @@ function rezeptPasstZumGeschmack(rezept, geschmack) {
 /**
  * Prueft, ob ein Rezept zur gewaehlten Schwierigkeit passt.
  * @param {Object} rezept
- * @param {string} schwierigkeit "alle", "leicht", "Mittel" oder "Schwer"
+ * @param {string} schwierigkeit "alle", "leicht", "mittel" oder "schwer"
  * @returns {boolean}
  */
 function rezeptPasstZurSchwierigkeit(rezept, schwierigkeit) {
