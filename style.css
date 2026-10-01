@@ -116,7 +116,7 @@ nav a[aria-current="page"]{     /* Suche nach allen a-Elementen in nav */
 }
 .rezept-titel {
     font-size: 1rem;                                        /* 1rem --> Schrift genau wie der normal Fließtext */
-    margin: var(--anstand-klein) var(--abstand-klein) 4px;  /* Außenabstand 1. oben und 2. unten */
+    margin: var(--abstand-klein) var(--abstand-klein) 4px;  /* Außenabstand 1. oben und 2. unten */
 }
 .rezept-meta {
     font-size: 0.85rem;
