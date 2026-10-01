@@ -83,3 +83,43 @@ nav a[aria-current="page"]{     /* Suche nach allen a-Elementen in nav */
     font-weight: 500;   /* Bestimmt die Dicke von Nav */
     border-bottom-color: var(--farbe-akzent);
 }
+
+/* Rezeptkarten und dessen Grid */
+#rezept-liste {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /*--> vollkommen automatisches responsives Layout, dass sich an die Bidlschirmgröße anpasst */
+    gap: var(--abstand-mittel);
+    margin-top: var(--abstand-mittel);
+}
+
+/* Einzelne Rezeptkarte */
+.rezept-karte {
+    background-color: var(--farbe-flaeche);
+    border: 1px solid var(--farbe-rahmen);
+    border-radius: var(--radius-karte);     /* Abrundung der Ecken der Rezeptarte */
+    overflow: hidden;                       /* Bild wird an den runden Ecken abgeschnitten, falls es herausragen würde */
+    display: flex;                          /* Aktiviert Flexbox-Layout-System --> Elemente darin können besser angeordnet werden */
+    flex-direction: column;                 /* Elemente der Flexbox werden untereinander angereiht */
+}
+.rezept-bild {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+.rezept-titel {
+    font-size: 1rem;                                        /* 1rem --> Schrift genau wie der normal Fließtext */
+    margin: var(--anstand-klein) var(--abstand-klein) 4px;  /* Außenabstand 1. oben und 2. unten */
+}
+.rezept-meta {
+    font-size: 0.85rem;
+    color: var(--farbe-text-schwach);
+    margin: 0 var(--abstand-klein) var(--abstand-klein);
+}
+.rezept-link {
+  margin: 0 var(--abstand-klein) var(--abstand-klein);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--farbe-akzent);
+  align-self: flex-start;
+}
