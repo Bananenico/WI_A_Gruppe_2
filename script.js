@@ -256,9 +256,10 @@ function findeRezeptNachId(id) {
 function erstelleRezeptKarte(rezept) {
   return `
     <article class="rezept-karte">
-      <img src="${rezept.bild}" alt="${rezept.titel}">
-      <h3><a href="details-rezept.html?id=${rezept.id}">${rezept.titel}</a></h3>
-      <p>${rezept.dauerMinuten} Minuten &middot; ${rezept.schwierigkeit}</p>
+      <img class="rezept-bild" src="${rezept.bild}" alt="${rezept.titel}">
+      <h3 class="rezept-titel">${rezept.titel}</h3>
+      <p class="rezept-meta">${rezept.schwierigkeit} · ${rezept.dauerMinuten} Min. · ${rezept.geschmack} · ${rezept.ernaehrung}</p>
+      <a class="rezept-link" href="details-rezept.html?id=${rezept.id}">Details ansehen</a>
     </article>
   `;
 }
@@ -308,7 +309,20 @@ function rezeptPasstZurSuche(rezept, suchbegriff) {
   return titelPasst || zutatPasst;
 }
 
-// Filterformular: bei Absenden nur nach dem Suchbegriff filtern
+/**
+ * Prueft, ob ein Rezept zur gewaehlten Schwierigkeit passt.
+ * @param {Object} rezept
+ * @param {string} schwierigkeit "alle", "leicht", "Mittel" oder "Schwer"
+ * @returns {boolean}
+ */
+function rezeptPasstZurSchwierigkeit(rezept, schwierigkeit) {
+  if (schwierigkeit === "alle") {
+    return true;
+  }
+  return rezept.schwierigkeit === schwierigkeit;
+}
+
+// Filterformular: bei Absenden nach Suchbegriff und Schwierigkeit filtern
 document.addEventListener("DOMContentLoaded", function () {
   const filterFormular = document.getElementById("filter-formular");
   if (filterFormular === null) {
@@ -319,9 +333,12 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     const suchbegriff = document.getElementById("suche").value;
+    const schwierigkeit = document.getElementById("schwierigkeit").value;
     const alleRezepte = ladeRezepte();
+
     const gefundeneRezepte = alleRezepte.filter(function (rezept) {
-      return rezeptPasstZurSuche(rezept, suchbegriff);
+      return rezeptPasstZurSuche(rezept, suchbegriff)
+        && rezeptPasstZurSchwierigkeit(rezept, schwierigkeit);
     });
 
     zeigeRezepte(gefundeneRezepte);
