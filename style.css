@@ -65,7 +65,7 @@ header{
 header a {
     text-decoration: none;
 }
-header > a {
+header > a {            /* Kind-Selektor --> Design wird nur auf Elemente im header, die eine Ebene unter <a> befinden, angewendet */
     font-weight: 500;
     font-size: 1.1rem;
     color: var(--farbe-text);
@@ -90,6 +90,22 @@ nav a[aria-current="page"]{     /* Suche nach allen a-Elementen in nav */
     color: var(--farbe-text);
     font-weight: 500;   /* Bestimmt die Dicke von Nav */
     border-bottom-color: var(--farbe-akzent);
+}
+
+/* Anpassung des main-Layouts */
+main {
+    max-width: 1100px;
+    margin-inline: auto;                                    /* Automatisch gleicher Abstand am Rand links u. rechts */
+    padding: var(--abstand-mittel) var(--abstand-gross);
+}
+
+/* Anpassung des footer-Layouts */
+footer {
+    padding: var(--abstand-mittel) var(--abstand-gross);
+    border-top: 1px solid var(--farbe-rahmen);
+    text-align: center;
+    color: var(--farbe-text-schwach);
+    font-size: 0.9rem;
 }
 
 /* Rezeptkarten und dessen Grid */
