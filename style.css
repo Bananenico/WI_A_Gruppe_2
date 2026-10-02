@@ -24,6 +24,8 @@
     --abstand-gross: 32px;
 
     --schrift: system-ui, "Segoe UI", sans-serif;
+
+    --farbe-fehler: red;
 }
 /* Base Reset */
 /* body sorgt benutzt die definierten Variablen und sorgt für sichtbare Veränderungen */
