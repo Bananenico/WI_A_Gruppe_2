@@ -249,6 +249,38 @@ function findeRezeptNachId(id) {
 }
 
 /**
+ * Ermittelt die naechste freie id fuer ein neues Rezept.
+ * @param {Array<Object>} rezepte
+ * @returns {number}
+ */
+function naechsteId(rezepte) {
+  if (rezepte.length === 0) {
+    return 1;
+  }
+
+  const hoechsteId = rezepte.reduce(function (bisherHoechste, rezept) {
+    return Math.max(bisherHoechste, rezept.id);
+  }, 0);
+
+  return hoechsteId + 1;
+}
+
+/**
+ * Fuegt ein neues Rezept zur gespeicherten Rezeptliste hinzu.
+ * @param {Object} neuesRezept Rezept ohne id
+ * @returns {Object} das gespeicherte Rezept inklusive vergebener id
+ */
+function fuegeRezeptHinzu(neuesRezept) {
+  const rezepte = ladeRezepte();
+  const rezeptMitId = Object.assign({ id: naechsteId(rezepte) }, neuesRezept);
+
+  rezepte.push(rezeptMitId);
+  speichereRezepte(rezepte);
+
+  return rezeptMitId;
+}
+
+/**
  * Erzeugt das HTML fuer eine einzelne Rezeptkarte.
  * @param {Object} rezept
  * @returns {string} HTML-String der Karte
