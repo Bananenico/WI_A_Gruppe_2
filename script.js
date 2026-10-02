@@ -482,4 +482,13 @@ document.addEventListener("DOMContentLoaded", function () {
   zubereitungListe.innerHTML = rezept.zubereitung.map(function (schritt) {
     return "<li>" + schritt + "</li>";
   }).join("");
+
+  const loeschButton = document.getElementById("loesch-button");
+  if (rezept.eigenesRezept === true) {
+    loeschButton.style.display = "";
+    loeschButton.addEventListener("click", function () {
+      loescheRezept(rezept.id);
+      window.location.href = "rezepte.html";
+    });
+  }
 });
