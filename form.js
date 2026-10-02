@@ -27,6 +27,9 @@ function entferneZutat(button) {
 
 const rezeptForm = document.getElementById("rezept-form");
 
+const titelInput = document.getElementById("titel");
+const titelFehler = document.getElementById("titel-fehler");
+
 rezeptForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -122,4 +125,20 @@ rezeptForm.addEventListener("submit", function (event) {
 
     alert("Das Rezept wurde erfolgreich gespeichert!");
     rezeptForm.reset();
+});
+
+titelInput.addEventListener("input", function () {
+    const titel = titelInput.value.trim();
+
+    if (titel === "") {
+        titelFehler.textContent = "Bitte Rezeptnamen eingeben.";
+    } else if (titel.length < 2) {
+        titelFehler.textContent = "Mindestens 2 Zeichen.";
+    } else if (!/[a-zA-ZäöüÄÖÜß]/.test(titel)) {
+        titelFehler.textContent = "Bitte Buchstaben eingeben.";
+    } else if (titel.length > 100) {
+        titelFehler.textContent = "Maximal 100 Zeichen.";
+    } else {
+        titelFehler.textContent = "";
+    }
 });
