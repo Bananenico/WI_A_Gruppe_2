@@ -149,9 +149,8 @@ footer {
 }
 
 
-/* Im Folgenden: Filter-Formular gestalten */
-
-/* Eingabefelder und Buttons (gelten für alle Formulare) */
+/* Im Folgenden: Filter-Formular und Formular fürs Hinzufügen neuer Rezepte gestalten */
+/* Design/Optik der Eingabefelder und Buttons gelten für beide Formulare*/
 label {                                     /* z. B. "Suche" */
     display: block;
     font-size: 0.85rem;
@@ -223,4 +222,67 @@ form#filter-formular fieldset label {
     color: var(--farbe-text);
     margin-right: var(--abstand-klein);
     margin-bottom: 0;
+}
+
+/* Layout style für das Formular zum Hinzufügen von Rezepten */
+form#rezept-form {
+    display: flex;
+    flex-direction: column;                 /* Alle Felder und Buttons stehen untereinander, jedes in einer eigenen Zeile */
+    gap: 4px;                               /* Kleiner Abstand zwischen Label und zugehörigem Feld */
+    max-width: 600px;                       /* Das Formular wird auf großen Bildschirmen nicht unnötig breit */
+}
+
+form#rezept-form label {
+    margin-top: var(--abstand-mittel);      /* Größerer Abstand zwischen den einzelnen Feldgruppen */
+    margin-bottom: 0;
+}
+
+form#rezept-form > input,
+form#rezept-form > select,
+form#rezept-form > textarea {
+    width: 100%;                            /* Nur die direkten Felder, die Zutatenzeilen sind davon ausgenommen */
+}
+
+form#rezept-form textarea {
+    resize: vertical;                       /* Größe nur nach unten/oben änderbar, nicht aus dem Formular heraus */
+}
+
+form#rezept-form #zutaten-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--abstand-klein);              /* Abstand zwischen den einzelnen Zutatenzeilen */
+}
+
+form#rezept-form .zutat {
+    display: flex;
+    flex-wrap: wrap;                        /* Auf schmalen Bildschirmen brechen die Felder einer Zeile um */
+    gap: var(--abstand-klein);
+}
+
+form#rezept-form .menge {
+    width: 90px;
+}
+
+form#rezept-form .einheit {
+    width: 110px;
+}
+
+form#rezept-form .zutat-name {
+    flex: 1;                                /* Der Zutatenname nimmt den restlichen Platz der Zeile ein */
+    min-width: 140px;
+}
+
+form#rezept-form #zutat-hinzufuegen {
+    align-self: flex-start;                 /* Button nur so breit wie sein Text, nicht über die ganze Zeile */
+    margin-top: var(--abstand-klein);
+}
+
+form#rezept-form button[type="submit"] {
+    align-self: flex-start;
+    margin-top: var(--abstand-mittel);
+}
+
+.fehler {
+    color: var(--farbe-fehler);             /* Fehlermeldung unter dem Rezeptnamen */
+    font-size: 0.8rem;
 }
