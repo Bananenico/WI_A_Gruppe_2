@@ -95,5 +95,31 @@ rezeptForm.addEventListener("submit", function (event) {
         return;
     }
 
-    alert("Das Rezept wurde erfolgreich geprüft!");
+    const neuesRezept = {
+        titel: titel,
+        kategorie: kategorie,
+        ernaehrung: ernaehrung,
+        geschmack: geschmack,
+        schwierigkeit: schwierigkeit,
+        dauerMinuten: Number(dauer),
+        portionen: Number(portionen),
+        bild: "images/platzhalter.jpg",
+        zutaten: Array.from(zutaten).map(function (zutatElement) {
+            return {
+                menge: Number(zutatElement.querySelector(".menge").value) || 0,
+                einheit: zutatElement.querySelector(".einheit").value.trim(),
+                name: zutatElement.querySelector(".zutat-name").value.trim()
+            };
+        }),
+        zubereitung: zubereitung.split("\n").map(function (zeile) {
+            return zeile.trim();
+        }).filter(function (zeile) {
+            return zeile !== "";
+        })
+    };
+
+    fuegeRezeptHinzu(neuesRezept);
+
+    alert("Das Rezept wurde erfolgreich gespeichert!");
+    rezeptForm.reset();
 });
