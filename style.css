@@ -151,24 +151,17 @@ footer {
 
 /* Im Folgenden: Filter-Formular gestalten */
 
-/* Filterformular */
-form#filter-formular {
-    display: flex;
-    flex-wrap: wrap;             /* Felder brechen auf schmalen Bildschirmen automatisch um */
-    align-items: flex-end;       /* Richtet alle Felder unten bündig aus, auch wenn Labels unterschiedlich lang sind */
-    gap: var(--abstand-mittel);
-    margin-bottom: var(--abstand-mittel);
-}
-
-form#filter-formular label {            /* "Suche" */
+/* Eingabefelder und Buttons (gelten für alle Formulare) */
+label {                                     /* z. B. "Suche" */
     display: block;
     font-size: 0.85rem;
     color: var(--farbe-text-schwach);
     margin-bottom: 4px;
 }
 
-form#filter-formular input,
-form#filter-formular select {
+input,
+select,
+textarea {
     font-family: var(--schrift);
     font-size: 0.9rem;                      /* Schriftgröße der Texte für die Filter */
     padding: 6px 10px;                      /* Höhe und Breite der Filtermöglichkeiten */
@@ -178,7 +171,38 @@ form#filter-formular select {
     color: var(--farbe-text);
 }
 
-form#filter-formular fieldset {
+input[type="radio"] {
+    accent-color: var(--farbe-akzent);      /* Färbt den Radiobutton selbst in der Akzentfarbe ein, ganz ohne eigenes Icon */
+}
+
+button {                                    /* Standard-Button: nur Rahmen (Nebenaktion) */
+    font-family: var(--schrift);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: var(--radius-button);
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--farbe-text);
+    border: 1px solid var(--farbe-rahmen);
+}
+
+button[type="submit"] {                     /* Haupt-Aktion: gefüllt in der Akzentfarbe */
+    background-color: var(--farbe-akzent);
+    color: var(--farbe-flaeche);
+    border: none;
+}
+
+/* Filterformular */
+form#filter-formular {
+    display: flex;
+    flex-wrap: wrap;                    /* Felder brechen auf schmalen Bildschirmen automatisch um */
+    align-items: flex-end;              /* Richtet alle Felder unten bündig aus, auch wenn Labels unterschiedlich lang sind */
+    gap: var(--abstand-mittel);
+    margin-bottom: var(--abstand-mittel);
+}
+
+form#filter-formular fieldset {             /* Fieldset --> Die Filter bekommen alle einen kleinen Rahmen */
     border: 1px solid var(--farbe-rahmen);
     border-radius: var(--radius-button);
     padding: var(--abstand-klein) var(--abstand-mittel);
@@ -191,7 +215,7 @@ form#filter-formular legend {
     padding: 0 4px;
 }
 
-form#filter-formular fieldset label {   /* Fieldset --> Die Filter bekommen alle einen kleinen Rahmen */
+form#filter-formular fieldset label {
     display: inline-flex;               /* Radiobutton und Text in einer Zeile nebeneinander */
     align-items: center;
     gap: 4px;
@@ -199,29 +223,4 @@ form#filter-formular fieldset label {   /* Fieldset --> Die Filter bekommen alle
     color: var(--farbe-text);
     margin-right: var(--abstand-klein);
     margin-bottom: 0;
-}
-
-form#filter-formular input[type="radio"] {
-    accent-color: var(--farbe-akzent);   /* Färbt den Radiobutton selbst in der Akzentfarbe ein, ganz ohne eigenes Icon */
-}
-
-form#filter-formular button {
-    font-family: var(--schrift);
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 8px 18px;
-    border-radius: var(--radius-button);
-    cursor: pointer;
-}
-
-form#filter-formular button[type="submit"] {
-    background-color: var(--farbe-akzent);
-    color: var(--farbe-flaeche);
-    border: none;
-}
-
-form#filter-formular button[type="reset"] {
-    background-color: transparent;
-    color: var(--farbe-text);
-    border: 1px solid var(--farbe-rahmen);
 }
