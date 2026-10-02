@@ -307,6 +307,10 @@ form#rezept-form button[type="submit"] {
     grid-template-columns: 1fr;                 /* Auf kleinen Bildschirmen steht alles untereinander */
     gap: var(--abstand-mittel);
     max-width: 900px;
+    padding: var(--abstand-mittel);
+    background-color: var(--farbe-flaeche);
+    border: 1px solid var(--farbe-rahmen);
+    border-radius: var(--radius-karte);
 }
 
 .rezept-detail > * {
@@ -320,11 +324,16 @@ form#rezept-form button[type="submit"] {
     grid-column: 1 / -1;                        /* Titel, Bild, Meta-Zeile und Button gehen über die volle Breite */
 }
 
+.rezept-detail > h1 {
+    font-size: 1.8rem;
+}
+
 #detail-bild {
     width: 100%;
     max-height: 380px;
     object-fit: cover;                          /* Bild wird beschnitten statt verzerrt */
     border-radius: var(--radius-karte);
+    border-radius: var(--farbe-text-schwach);
 }
 
 #detail-meta {
@@ -333,16 +342,34 @@ form#rezept-form button[type="submit"] {
 
 .rezept-detail h2 {
     font-size: 1.15rem;
+    margin-bottom: var(--abstand-klein);
+    padding-bottom: var(--abstand-klein);
+    border-bottom: 1px solid var(--farbe-rahmen);
 }
 
-.rezept-detail ul,
-.rezept-detail ol {
+#detail-zutaten {
+    list-style: none;                           /* Zutaten ohne Aufzählungspunkte */
+    margin: 0;
+    padding: 0;
+}
+
+#detail-zutaten li {
+    padding: 6px 0;
+    border-bottom: 1px solid var(--farbe-rahmen);   /* Feine Trennlinie zwischen den Zutaten */
+}
+
+#detail-zubereitung {
     margin: 0;
     padding-left: 1.25rem;
 }
 
-.rezept-detail li {
+#detail-zubereitung li {
     margin-bottom: var(--abstand-klein);
+}
+
+#detail-zubereitung li::marker {
+    color: var(--farbe-akzent);                 /* Schrittnummern in der Akzentfarbe */
+    font-weight: 500;
 }
 
 #loesch-button {                                /* Löschen als Warnaktion in der Fehlerfarbe */
@@ -355,5 +382,6 @@ form#rezept-form button[type="submit"] {
     .rezept-detail {
         grid-template-columns: 1fr 2fr;         /* Zutaten schmal links, Zubereitung breiter rechts */
         gap: var(--abstand-mittel) var(--abstand-gross);
+        padding: var(--abstand-gross);
     }
 }
