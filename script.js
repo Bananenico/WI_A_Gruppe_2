@@ -14,6 +14,7 @@ const startRezepte = [
     kategorie: "Kochen",
     ernaehrung: "vegan",
     geschmack: "herzhaft",
+    eigenesRezept: false,
     schwierigkeit: "leicht",
     dauerMinuten: 25,
     portionen: 4,
@@ -39,6 +40,7 @@ const startRezepte = [
     kategorie: "Kochen",
     ernaehrung: "vegan",
     geschmack: "herzhaft",
+    eigenesRezept: false,
     schwierigkeit: "leicht",
     dauerMinuten: 60,
     portionen: 4,
@@ -66,6 +68,7 @@ const startRezepte = [
     kategorie: "Kochen",
     ernaehrung: "fleisch",
     geschmack: "herzhaft",
+    eigenesRezept: false,
     schwierigkeit: "leicht",
     dauerMinuten: 25,
     portionen: 2,
@@ -91,6 +94,7 @@ const startRezepte = [
     kategorie: "Kochen",
     ernaehrung: "vegetarisch",
     geschmack: "herzhaft",
+    eigenesRezept: false,
     schwierigkeit: "mittel",
     dauerMinuten: 78,
     portionen: 4,
@@ -115,6 +119,7 @@ const startRezepte = [
     kategorie: "Kochen",
     ernaehrung: "fisch",
     geschmack: "herzhaft",
+    eigenesRezept: false,
     schwierigkeit: "mittel",
     dauerMinuten: 47,
     portionen: 2,
@@ -139,6 +144,7 @@ const startRezepte = [
     kategorie: "Kochen",
     ernaehrung: "vegan",
     geschmack: "herzhaft",
+    eigenesRezept: false,
     schwierigkeit: "mittel",
     dauerMinuten: 40,
     portionen: 4,
@@ -163,6 +169,7 @@ const startRezepte = [
     kategorie: "Backen",
     ernaehrung: "vegetarisch",
     geschmack: "suess",
+    eigenesRezept: false,
     schwierigkeit: "leicht",
     dauerMinuten: 85,
     portionen: 12,
@@ -187,6 +194,7 @@ const startRezepte = [
     kategorie: "Backen",
     ernaehrung: "vegetarisch",
     geschmack: "suess",
+    eigenesRezept: false,
     schwierigkeit: "leicht",
     dauerMinuten: 60,
     portionen: 8,
@@ -272,12 +280,28 @@ function naechsteId(rezepte) {
  */
 function fuegeRezeptHinzu(neuesRezept) {
   const rezepte = ladeRezepte();
-  const rezeptMitId = Object.assign({ id: naechsteId(rezepte) }, neuesRezept);
+  const rezeptMitId = Object.assign(
+    { id: naechsteId(rezepte), eigenesRezept: true },
+    neuesRezept
+  );
 
   rezepte.push(rezeptMitId);
   speichereRezepte(rezepte);
 
   return rezeptMitId;
+}
+
+/**
+ * Loescht ein Rezept anhand seiner id aus der gespeicherten Rezeptliste.
+ * @param {number} id
+ */
+function loescheRezept(id) {
+  const rezepte = ladeRezepte();
+  const uebrigeRezepte = rezepte.filter(function (rezept) {
+    return rezept.id !== id;
+  });
+
+  speichereRezepte(uebrigeRezepte);
 }
 
 /**
@@ -458,4 +482,13 @@ document.addEventListener("DOMContentLoaded", function () {
   zubereitungListe.innerHTML = rezept.zubereitung.map(function (schritt) {
     return "<li>" + schritt + "</li>";
   }).join("");
+
+  const loeschButton = document.getElementById("loesch-button");
+  if (rezept.eigenesRezept === true) {
+    loeschButton.style.display = "";
+    loeschButton.addEventListener("click", function () {
+      loescheRezept(rezept.id);
+      window.location.href = "rezepte.html";
+    });
+  }
 });
