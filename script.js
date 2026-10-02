@@ -281,6 +281,19 @@ function fuegeRezeptHinzu(neuesRezept) {
 }
 
 /**
+ * Loescht ein Rezept anhand seiner id aus der gespeicherten Rezeptliste.
+ * @param {number} id
+ */
+function loescheRezept(id) {
+  const rezepte = ladeRezepte();
+  const uebrigeRezepte = rezepte.filter(function (rezept) {
+    return rezept.id !== id;
+  });
+
+  speichereRezepte(uebrigeRezepte);
+}
+
+/**
  * Erzeugt das HTML fuer eine einzelne Rezeptkarte.
  * @param {Object} rezept
  * @returns {string} HTML-String der Karte
