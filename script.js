@@ -423,3 +423,39 @@ document.addEventListener("DOMContentLoaded", function () {
     zeigeRezepte(gefundeneRezepte);
   });
 });
+
+// Detailansicht: Rezept anhand der id aus der URL anzeigen
+document.addEventListener("DOMContentLoaded", function () {
+  const titelElement = document.getElementById("detail-titel");
+  if (titelElement === null) {
+    return;
+  }
+
+  const parameter = new URLSearchParams(window.location.search);
+  const id = Number(parameter.get("id"));
+  const rezept = findeRezeptNachId(id);
+
+  if (rezept === undefined) {
+    titelElement.textContent = "Rezept nicht gefunden";
+    return;
+  }
+
+  titelElement.textContent = rezept.titel;
+
+  const bildElement = document.getElementById("detail-bild");
+  bildElement.src = rezept.bild;
+  bildElement.alt = rezept.titel;
+
+  const metaElement = document.getElementById("detail-meta");
+  metaElement.textContent = rezept.schwierigkeit + " · " + rezept.dauerMinuten + " Min. · " + rezept.portionen + " Portionen";
+
+  const zutatenListe = document.getElementById("detail-zutaten");
+  zutatenListe.innerHTML = rezept.zutaten.map(function (zutat) {
+    return "<li>" + zutat.menge + " " + zutat.einheit + " " + zutat.name + "</li>";
+  }).join("");
+
+  const zubereitungListe = document.getElementById("detail-zubereitung");
+  zubereitungListe.innerHTML = rezept.zubereitung.map(function (schritt) {
+    return "<li>" + schritt + "</li>";
+  }).join("");
+});
