@@ -81,9 +81,20 @@
 
             <div id="zutaten-container">
                 <div class="zutat">
-                    <input type="number" class="menge" placeholder="Menge" min="0">
-                    <input type="text" class="einheit" placeholder="Einheit">
-                    <input type="text" class="zutat-name" placeholder="Zutat">
+
+                    <div>
+                        <input type="text" class="menge" placeholder="Menge" inputmode="decimal">
+                        <small class="menge-fehler fehler"></small>
+                    </div>
+                    <div>
+                        <input type="text" class="einheit" placeholder="Einheit">
+                        <small class="einheit-fehler fehler"></small>
+                    </div>
+                    <div>
+                        <input type="text" class="zutat-name" placeholder="Zutat">
+                        <small class="zutat-fehler fehler"></small>
+                    </div>
+
                     <button type="button" class="zutat-entfernen" onclick="entferneZutat(this)">Entfernen</button>
                 </div>
             </div>

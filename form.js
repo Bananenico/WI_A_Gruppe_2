@@ -10,9 +10,18 @@ zutatHinzufuegenButton.addEventListener("click", function () {
     neueZutat.className = "zutat";
 
     neueZutat.innerHTML = `
-        <input type="number" class="menge" placeholder="Menge" min="0">
-        <input type="text" class="einheit" placeholder="Einheit">
-        <input type="text" class="zutat-name" placeholder="Zutat">
+        <div>
+            <input type="text" class="menge" placeholder="Menge" inputmode="decimal">
+            <small class="menge-fehler fehler"></small>
+        </div>
+        <div>
+            <input type="text" class="einheit" placeholder="Einheit">
+            <small class="einheit-fehler fehler"></small>
+        </div>
+        <div>
+            <input type="text" class="zutat-name" placeholder="Zutat">
+            <small class="zutat-fehler fehler"></small>
+        </div>
         <button type="button" class="zutat-entfernen" onclick="entferneZutat(this)">Entfernen</button>
     `;
 
@@ -92,6 +101,8 @@ rezeptForm.addEventListener("submit", function (event) {
         fehler.push("Mindestens eine Zutat muss hinzugefügt werden.");
     } else {
         for (let i = 0; i < zutaten.length; i++) {
+            const menge = zutaten[i].querySelector(".menge").value.trim();
+            const einheit = zutaten[i].querySelector(".einheit").value.trim();
             const name = zutaten[i]
                 .querySelector(".zutat-name")
                 .value
@@ -99,6 +110,24 @@ rezeptForm.addEventListener("submit", function (event) {
 
             if (name === "") {
                 fehler.push("Bei Zutat " + (i + 1) + " fehlt der Name.");
+            }
+
+            if (menge !== "" && isNaN(Number(menge))) {
+        fehler.push("Bei Zutat " + (i + 1) + " muss die Menge eine Zahl sein.");
+    }
+
+    if (menge !== "" && Number(menge) < 0) {
+        fehler.push("Bei Zutat " + (i + 1) + " darf die Menge nicht negativ sein.");
+    }
+
+    if (einheit !== "" && /\d/.test(einheit)) {
+        fehler.push("Bei Zutat " + (i + 1) + " darf die Einheit keine Zahlen enthalten.");
+    }
+
+    if (name === "") {
+        fehler.push("Bei Zutat " + (i + 1) + " fehlt der Name.");
+    } else if (!/[a-zA-ZäöüÄÖÜß]/.test(name)) {
+        fehler.push("Bei Zutat " + (i + 1) + " muss der Name Buchstaben enthalten.");
             }
         }
     }
@@ -178,5 +207,52 @@ portionenInput.addEventListener("input", function () {
         portionenFehler.textContent = "Maximal 100 Portionen.";
     } else {
         portionenFehler.textContent = "";
+    }
+});
+
+document.addEventListener("input", function (event) {
+    const zutat = event.target.closest(".zutat");
+
+    if (!zutat) {
+        return;
+    }
+
+    if (event.target.classList.contains("menge")) {
+    const menge = event.target.value.trim();
+    const fehler = zutat.querySelector(".menge-fehler");
+
+    if (menge !== "" && menge.startsWith("-")) {
+        fehler.textContent = "Menge darf nicht negativ sein.";
+    } else if (menge !== "" && !/^\d+([.,]\d+)?$/.test(menge)) {
+        fehler.textContent = "Bitte eine Zahl eingeben.";
+    } else {
+        fehler.textContent = "";
+        }
+    }
+
+   if (event.target.classList.contains("einheit")) {
+    const einheit = event.target.value.trim();
+    const fehler = zutat.querySelector(".einheit-fehler");
+
+    if (einheit !== "" && /^\d+$/.test(einheit)) {
+        fehler.textContent = "Bitte Einheit eingeben.";
+    } else if (/\d/.test(einheit)) {
+        fehler.textContent = "Einheit darf keine Zahlen enthalten.";
+    } else {
+        fehler.textContent = "";
+        }
+    }
+
+    if (event.target.classList.contains("zutat-name")) {
+        const name = event.target.value.trim();
+        const fehler = zutat.querySelector(".zutat-fehler");
+
+        if (name === "") {
+            fehler.textContent = "Bitte Zutat eingeben.";
+        } else if (!/[a-zA-ZäöüÄÖÜß]/.test(name)) {
+            fehler.textContent = "Bitte Zutat eingeben.";
+        } else {
+            fehler.textContent = "";
+        }
     }
 });
