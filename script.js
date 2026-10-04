@@ -254,8 +254,29 @@ function findeRezeptNachId(id) {
   return rezepte.find(function (rezept) {
     return rezept.id === id;
   });
-}
 
+  /**
+ * Rundet eine Menge auf eine Nachkommastelle, zeigt aber ganze Zahlen ohne Nachkommastelle.
+ * @param {number} menge
+ * @returns {string}
+ */
+function rundeMenge(menge) {
+  const gerundet = Math.round(menge * 10) / 10;
+  return Number.isInteger(gerundet) ? String(gerundet) : gerundet.toFixed(1);
+}
+/**
+ * Rendert die Zutatenliste, umgerechnet auf die gewuenschte Portionenzahl.
+ * @param {Object} rezept
+ * @param {number} portionenAnzahl
+ */
+function rendereZutatenliste(rezept, portionenAnzahl) {
+  const zutatenListe = document.getElementById("detail-zutaten");
+  zutatenListe.innerHTML = rezept.zutaten.map(function (zutat) {
+    const umgerechnetMenge = (zutat.menge / rezept.portionen) * portionenAnzahl;
+    return "<li>" + rundeMenge(umgerechnetMenge) + " " + zutat.einheit + " " + zutat.name + "</li>";
+  }).join("");
+}
+  
 /**
  * Ermittelt die naechste freie id fuer ein neues Rezept.
  * @param {Array<Object>} rezepte
@@ -309,8 +330,7 @@ function loescheRezept(id) {
  * @param {Object} rezept
  * @returns {string} HTML-String der Karte
  */
-//Andere Designmöglichkeit --> nun ist ein Link auf Details ansehen, dann kommt man auf die
-//genaueren Details. --> So habe ich später geplant, mit CSS zu designen.
+
 function erstelleRezeptKarte(rezept) {
   return `
     <article class="rezept-karte">
@@ -473,22 +493,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const metaElement = document.getElementById("detail-meta");
   metaElement.textContent = rezept.schwierigkeit + " · " + rezept.dauerMinuten + " Min. · " + rezept.portionen + " Portionen";
 
-  const zutatenListe = document.getElementById("detail-zutaten");
-  zutatenListe.innerHTML = rezept.zutaten.map(function (zutat) {
-    return "<li>" + zutat.menge + " " + zutat.einheit + " " + zutat.name + "</li>";
-  }).join("");
+ rendereZutatenliste(rezept, rezept.portionen);
+
+ const portionenEingabe = document.getElementById("portionen-eingabe");
+  portionenEingabe.value = rezept.portionen;
+  portionenEingabe.addEventListener("input", function () {
+    const neuePortionenAnzahl = Number(portionenEingabe.value);
+    if (neuePortionenAnzahl > 0) {
+      rendereZutatenliste(rezept, neuePortionenAnzahl);
+    }
+  });
+
 
   const zubereitungListe = document.getElementById("detail-zubereitung");
   zubereitungListe.innerHTML = rezept.zubereitung.map(function (schritt) {
     return "<li>" + schritt + "</li>";
   }).join("");
-
-  const loeschButton = document.getElementById("loesch-button");
-  if (rezept.eigenesRezept === true) {
-    loeschButton.style.display = "";
-    loeschButton.addEventListener("click", function () {
-      loescheRezept(rezept.id);
-      window.location.href = "rezepte.html";
-    });
-  }
 });
