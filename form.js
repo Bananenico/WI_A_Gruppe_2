@@ -30,6 +30,12 @@ const rezeptForm = document.getElementById("rezept-form");
 const titelInput = document.getElementById("titel");
 const titelFehler = document.getElementById("titel-fehler");
 
+const dauerInput = document.getElementById("dauer");
+const dauerFehler = document.getElementById("dauer-fehler");
+
+const portionenInput = document.getElementById("portionen");
+const portionenFehler = document.getElementById("portionen-fehler");
+
 rezeptForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -66,10 +72,14 @@ rezeptForm.addEventListener("submit", function (event) {
 
     if (dauer === "" || Number(dauer) <= 0) {
         fehler.push("Zubereitungszeit muss größer als 0 sein.");
+    } else if (Number(dauer) > 1440) {
+        fehler.push("Zubereitungszeit darf maximal 1440 Minuten sein.");
     }
 
     if (portionen === "" || Number(portionen) <= 0) {
         fehler.push("Portionen müssen größer als 0 sein.");
+    } else if (Number(portionen) > 100) {
+        fehler.push("Portionen dürfen maximal 100 sein.");
     }
 
     if (zubereitung === "") {
@@ -140,5 +150,33 @@ titelInput.addEventListener("input", function () {
         titelFehler.textContent = "Maximal 100 Zeichen.";
     } else {
         titelFehler.textContent = "";
+    }
+});
+
+dauerInput.addEventListener("input", function () {
+    const dauer = Number(dauerInput.value);
+
+    if (dauerInput.value === "") {
+        dauerFehler.textContent = "Bitte Zubereitungszeit eingeben.";
+    } else if (dauer <= 0) {
+        dauerFehler.textContent = "Muss größer als 0 sein.";
+    } else if (dauer > 1440) {
+        dauerFehler.textContent = "Maximal 1440 Minuten.";
+    } else {
+        dauerFehler.textContent = "";
+    }
+});
+
+portionenInput.addEventListener("input", function () {
+    const portionen = Number(portionenInput.value);
+
+    if (portionenInput.value === "") {
+        portionenFehler.textContent = "Bitte Portionen eingeben.";
+    } else if (portionen <= 0) {
+        portionenFehler.textContent = "Muss größer als 0 sein.";
+    } else if (portionen > 100) {
+        portionenFehler.textContent = "Maximal 100 Portionen.";
+    } else {
+        portionenFehler.textContent = "";
     }
 });
