@@ -45,6 +45,9 @@ const dauerFehler = document.getElementById("dauer-fehler");
 const portionenInput = document.getElementById("portionen");
 const portionenFehler = document.getElementById("portionen-fehler");
 
+const zubereitungInput = document.getElementById("zubereitung");
+const zubereitungFehler = document.getElementById("zubereitung-fehler");
+
 rezeptForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -107,10 +110,6 @@ rezeptForm.addEventListener("submit", function (event) {
                 .querySelector(".zutat-name")
                 .value
                 .trim();
-
-            if (name === "") {
-                fehler.push("Bei Zutat " + (i + 1) + " fehlt der Name.");
-            }
 
             if (menge !== "" && isNaN(Number(menge))) {
         fehler.push("Bei Zutat " + (i + 1) + " muss die Menge eine Zahl sein.");
@@ -254,5 +253,15 @@ document.addEventListener("input", function (event) {
         } else {
             fehler.textContent = "";
         }
+    }
+});
+
+zubereitungInput.addEventListener("input", function () {
+    const zubereitung = zubereitungInput.value.trim();
+
+    if (zubereitung === "") {
+        zubereitungFehler.textContent = "Bitte Zubereitung eingeben.";
+    } else {
+        zubereitungFehler.textContent = "";
     }
 });
