@@ -22,15 +22,15 @@ const startRezepte = [
     zutaten: [
       { menge: 400, einheit: "g", name: "Spaghetti" },
       { menge: 4, einheit: "Zehen", name: "Knoblauch" },
-      { menge: 150, einheit: "ml", name: "Olivenoel" },
+      { menge: 150, einheit: "ml", name: "Olivenöl" },
       { menge: 1, einheit: "Prise", name: "Salz" },
       { menge: 1, einheit: "Prise", name: "Pfeffer" }
     ],
     zubereitung: [
       "Spaghetti in Salzwasser bissfest kochen.",
-      "Knoblauch schaelen und in Scheiben schneiden.",
-      "Olivenoel erhitzen und Knoblauch vorsichtig anbraten.",
-      "Spaghetti abgiessen und mit dem Knoblauchoel vermischen.",
+      "Knoblauch schälen und in Scheiben schneiden.",
+      "Olivenöl erhitzen und Knoblauch vorsichtig anbraten.",
+      "Spaghetti abgiessen und mit dem Knoblauch-Olivenöl vermischen.",
       "Mit Salz und Pfeffer abschmecken."
     ]
   },
@@ -47,24 +47,24 @@ const startRezepte = [
     bild: "images/chili-sin-carne.jpg",
     zutaten: [
       { menge: 2, einheit: "Zehen", name: "Knoblauch" },
-      { menge: 1, einheit: "Stueck", name: "Zwiebel" },
-      { menge: 2, einheit: "Stueck", name: "Paprika" },
+      { menge: 1, einheit: "Stück", name: "Zwiebel" },
+      { menge: 2, einheit: "Stück", name: "Paprika" },
       { menge: 250, einheit: "g", name: "rote Linsen" },
       { menge: 480, einheit: "g", name: "Kidneybohnen" },
       { menge: 400, einheit: "g", name: "gehackte Tomaten" },
-      { menge: 400, einheit: "ml", name: "Gemuesebruehe" }
+      { menge: 400, einheit: "ml", name: "Gemüsebrühe" }
     ],
     zubereitung: [
       "Zwiebel, Knoblauch und Paprika klein schneiden und anbraten.",
-      "Tomatenmark und Gewuerze kurz mitbraten.",
-      "Linsen, Bohnen und Tomaten hinzufuegen.",
-      "Mit Gemuesebruehe aufgiessen und koecheln lassen, bis die Linsen weich sind.",
+      "Tomatenmark und Gewürze kurz mitbraten.",
+      "Linsen, Bohnen und Tomaten hinzufügen.",
+      "Mit Gemüsebrühe aufgiessen und köcheln lassen, bis die Linsen weich sind.",
       "Mit Salz und Pfeffer abschmecken."
     ]
   },
   {
     id: 3,
-    titel: "Haehnchencurry mit Reis",
+    titel: "Hähnchencurry mit Reis",
     kategorie: "Kochen",
     ernaehrung: "fleisch",
     geschmack: "herzhaft",
@@ -75,22 +75,22 @@ const startRezepte = [
     bild: "images/haehnchencurry.jpg",
     zutaten: [
       { menge: 125, einheit: "g", name: "Basmatireis" },
-      { menge: 250, einheit: "g", name: "Haehnchenbrustfilet" },
-      { menge: 1, einheit: "Stueck", name: "Zwiebel" },
+      { menge: 250, einheit: "g", name: "Hähnchenbrustfilet" },
+      { menge: 1, einheit: "Stück", name: "Zwiebel" },
       { menge: 1, einheit: "TL", name: "Curry" },
       { menge: 200, einheit: "ml", name: "Kokosmilch" }
     ],
     zubereitung: [
       "Reis nach Packungsanleitung kochen.",
-      "Haehnchen in Stuecke schneiden und anbraten, dann herausnehmen.",
+      "Hähnchen in Stücke schneiden und anbraten, dann herausnehmen.",
       "Zwiebel anbraten, Curry dazugeben.",
-      "Mit Bruehe und Kokosmilch abloeschen.",
-      "Haehnchen wieder dazugeben und kurz koecheln lassen."
+      "Mit Brühe und Kokosmilch ablöschen.",
+      "Hähnchen wieder dazugeben und kurz köcheln lassen."
     ]
   },
   {
     id: 4,
-    titel: "Gemueselasagne",
+    titel: "Gemüselasagne",
     kategorie: "Kochen",
     ernaehrung: "vegetarisch",
     geschmack: "herzhaft",
@@ -107,15 +107,15 @@ const startRezepte = [
       { menge: 250, einheit: "g", name: "Lasagneplatten" }
     ],
     zubereitung: [
-      "Aubergine und Zucchini wuerfeln und anbraten.",
+      "Aubergine und Zucchini würfeln und anbraten.",
       "Tomatensauce zubereiten, helle Sauce zubereiten.",
-      "Lasagneplatten, Gemuese und Saucen abwechselnd schichten.",
+      "Lasagneplatten, Gemüse und Saucen abwechselnd schichten.",
       "Mit Feta bestreuen und goldbraun backen."
     ]
   },
   {
     id: 5,
-    titel: "Lachs mit Ofengemuese",
+    titel: "Lachs mit Ofengemüse",
     kategorie: "Kochen",
     ernaehrung: "fisch",
     geschmack: "herzhaft",
@@ -125,17 +125,17 @@ const startRezepte = [
     portionen: 2,
     bild: "images/lachs-ofengemuese.jpg",
     zutaten: [
-      { menge: 2, einheit: "Stueck", name: "Lachsfilet" },
-      { menge: 1, einheit: "Stueck", name: "Zucchini" },
-      { menge: 1, einheit: "Stueck", name: "Paprika" },
-      { menge: 1, einheit: "Stueck", name: "Zwiebel" },
-      { menge: 1, einheit: "EL", name: "Olivenoel" }
+      { menge: 2, einheit: "Stück", name: "Lachsfilet" },
+      { menge: 1, einheit: "Stück", name: "Zucchini" },
+      { menge: 1, einheit: "Stück", name: "Paprika" },
+      { menge: 1, einheit: "Stück", name: "Zwiebel" },
+      { menge: 1, einheit: "EL", name: "Olivenöl" }
     ],
     zubereitung: [
-      "Gemuese waschen, schneiden und mit Oel, Salz und Pfeffer vermischen.",
+      "Gemüse waschen, schneiden und mit Öl, Salz und Pfeffer vermischen.",
       "Auf einem Backblech vorgaren.",
-      "Lachs wuerzen und zum Gemuese aufs Blech legen.",
-      "Fertig garen, bis Lachs durch und Gemuese weich ist."
+      "Lachs würzen und zum Gemüse aufs Blech legen.",
+      "Fertig garen, bis Lachs durch und Gemüse weich ist."
     ]
   },
   {
@@ -151,15 +151,15 @@ const startRezepte = [
     bild: "images/risotto-pilze.jpg",
     zutaten: [
       { menge: 300, einheit: "g", name: "Champignons" },
-      { menge: 2, einheit: "Stueck", name: "Zwiebel" },
+      { menge: 2, einheit: "Stück", name: "Zwiebel" },
       { menge: 250, einheit: "g", name: "Risottoreis" },
       { menge: 200, einheit: "ml", name: "veganer Weisswein" },
-      { menge: 600, einheit: "ml", name: "Gemuesebruehe" }
+      { menge: 600, einheit: "ml", name: "Gemüsebrühe" }
     ],
     zubereitung: [
       "Pilze putzen und in Scheiben schneiden.",
-      "Zwiebeln anbraten, Risottoreis kurz mitroesten.",
-      "Mit Weisswein abloeschen, nach und nach Bruehe angiessen und ruehren.",
+      "Zwiebeln anbraten, Risottoreis kurz mitrösten.",
+      "Mit Weisswein ablöschen, nach und nach Brühe angiessen und rühren.",
       "Pilze separat anbraten und unter das fertige Risotto mischen."
     ]
   },
@@ -178,13 +178,13 @@ const startRezepte = [
       { menge: 250, einheit: "g", name: "Butter" },
       { menge: 400, einheit: "g", name: "Weizenmehl" },
       { menge: 200, einheit: "g", name: "Zucker" },
-      { menge: 4, einheit: "Stueck", name: "Eier" },
+      { menge: 4, einheit: "Stück", name: "Eier" },
       { menge: 30, einheit: "g", name: "Kakaopulver" }
     ],
     zubereitung: [
-      "Butter, Zucker und Salz cremig ruehren, Eier unterruehren.",
-      "Mehl, Staerke und Backpulver mit Milch dazugeben.",
-      "Haelfte des Teigs abnehmen und mit Kakao vermischen.",
+      "Butter, Zucker und Salz cremig rühren, Eier unterrühren.",
+      "Mehl, Stärke und Backpulver mit Milch dazugeben.",
+      "Hälfte des Teigs abnehmen und mit Kakao vermischen.",
       "Teige abwechselnd in die Form geben und verziehen, dann backen."
     ]
   },
@@ -200,17 +200,17 @@ const startRezepte = [
     portionen: 8,
     bild: "images/zitronenkuchen.jpg",
     zutaten: [
-      { menge: 1, einheit: "Stueck", name: "Bio-Zitrone" },
+      { menge: 1, einheit: "Stück", name: "Bio-Zitrone" },
       { menge: 180, einheit: "g", name: "Butter" },
       { menge: 150, einheit: "g", name: "Zucker" },
-      { menge: 4, einheit: "Stueck", name: "Eier" },
+      { menge: 4, einheit: "Stück", name: "Eier" },
       { menge: 250, einheit: "g", name: "Weizenmehl" }
     ],
     zubereitung: [
       "Zitrone abreiben und auspressen.",
-      "Butter, Zucker und Vanillezucker cremig ruehren, Eier einzeln unterruehren.",
-      "Zitronenschale und -saft dazugeben, Mehl und Backpulver unterruehren.",
-      "In eine Kastenform fuellen und backen, danach mit Zitronenguss ueberziehen."
+      "Butter, Zucker und Vanillezucker cremig rühren, Eier einzeln unterrühren.",
+      "Zitronenschale und -saft dazugeben, Mehl und Backpulver unterrühren.",
+      "In eine Kastenform füllen und backen, danach mit Zitronenguss überziehen."
     ]
   }
 ];
@@ -254,6 +254,7 @@ function findeRezeptNachId(id) {
   return rezepte.find(function (rezept) {
     return rezept.id === id;
   });
+} 
 
   /**
  * Rundet eine Menge auf eine Nachkommastelle, zeigt aber ganze Zahlen ohne Nachkommastelle.
