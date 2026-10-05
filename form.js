@@ -96,6 +96,12 @@ rezeptForm.addEventListener("submit", async function (event) {
 
     if (titel === "") {
         fehler.push("Rezeptname fehlt.");
+    } else if (titel.length < 2) {
+        fehler.push("Rezeptname muss mindestens 2 Zeichen enthalten.");
+    } else if (!/[a-zA-ZäöüÄÖÜß]/.test(titel)) {
+        fehler.push("Rezeptname muss Buchstaben enthalten.");
+    } else if (titel.length > 100) {
+        fehler.push("Rezeptname darf maximal 100 Zeichen enthalten.");
     }
 
     if (kategorie === "") {
@@ -143,12 +149,8 @@ rezeptForm.addEventListener("submit", async function (event) {
                 .value
                 .trim();
 
-            if (menge !== "" && isNaN(Number(menge))) {
+    if (menge !== "" && !/^\d+([.,]\d+)?$/.test(menge)) {
         fehler.push("Bei Zutat " + (i + 1) + " muss die Menge eine Zahl sein.");
-    }
-
-    if (menge !== "" && Number(menge) < 0) {
-        fehler.push("Bei Zutat " + (i + 1) + " darf die Menge nicht negativ sein.");
     }
 
     if (einheit !== "" && /\d/.test(einheit)) {
@@ -201,7 +203,7 @@ if (bildDatei) {
         bild: bild,
         zutaten: Array.from(zutaten).map(function (zutatElement) {
             return {
-                menge: Number(zutatElement.querySelector(".menge").value) || 0,
+                menge: Number(zutatElement.querySelector(".menge").value.replace(",", ".")) || 0,
                 einheit: zutatElement.querySelector(".einheit").value.trim(),
                 name: zutatElement.querySelector(".zutat-name").value.trim()
             };
