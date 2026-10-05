@@ -48,7 +48,39 @@ const portionenFehler = document.getElementById("portionen-fehler");
 const zubereitungInput = document.getElementById("zubereitung");
 const zubereitungFehler = document.getElementById("zubereitung-fehler");
 
-rezeptForm.addEventListener("submit", function (event) {
+const bildInput = document.getElementById("bild");
+const bildEntfernenButton = document.getElementById("bild-entfernen");
+
+bildInput.addEventListener("change", function () {
+    if (bildInput.files.length > 0) {
+        bildEntfernenButton.style.display = "inline-block";
+    } else {
+        bildEntfernenButton.style.display = "none";
+    }
+});
+
+bildEntfernenButton.addEventListener("click", function () {
+    bildInput.value = "";
+    bildEntfernenButton.style.display = "none";
+});
+
+function leseBildAlsDataURL(datei) {
+    return new Promise(function(resolve, reject) {
+        const reader = new FileReader();
+
+        reader.onload = function() {
+            resolve(reader.result);
+        };
+
+        reader.onerror = function() {
+            reject(new Error("Bild konnte nicht gelesen werden."));
+        };
+
+        reader.readAsDataURL(datei);
+    });
+}
+
+rezeptForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const titel = document.getElementById("titel").value.trim();
@@ -136,6 +168,28 @@ rezeptForm.addEventListener("submit", function (event) {
         return;
     }
 
+   let bild = "images/platzhalter.jpg";
+const bildDatei = bildInput.files[0];
+
+if (bildDatei) {
+    if (!bildDatei.type.startsWith("image/")) {
+        alert("Bitte wählen Sie eine Bilddatei aus.");
+        return;
+    }
+
+    if (bildDatei.size > 2 * 1024 * 1024) {
+        alert("Das Bild darf maximal 2 MB groß sein.");
+        return;
+    }
+
+    try {
+        bild = await leseBildAlsDataURL(bildDatei);
+    } catch (error) {
+        alert("Das Bild konnte nicht gelesen werden.");
+        return;
+    }
+}
+
     const neuesRezept = {
         titel: titel,
         kategorie: kategorie,
@@ -144,7 +198,7 @@ rezeptForm.addEventListener("submit", function (event) {
         schwierigkeit: schwierigkeit,
         dauerMinuten: Number(dauer),
         portionen: Number(portionen),
-        bild: "images/platzhalter.jpg",
+        bild: bild,
         zutaten: Array.from(zutaten).map(function (zutatElement) {
             return {
                 menge: Number(zutatElement.querySelector(".menge").value) || 0,
