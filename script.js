@@ -344,11 +344,12 @@ function erstelleRezeptKarte(rezept) {
 }
 
 /**
- * Zeigt die uebergebene Rezeptliste im Ergebnisbereich der Rezepteseite an.
+ * Zeigt die uebergebene Rezeptliste im angegebenen Container an.
  * @param {Array<Object>} rezepte
+ * @param {string} containerId id des Containers, in den die Karten gerendert werden
  */
-function zeigeRezepte(rezepte) {
-  const liste = document.getElementById("rezept-liste");
+function zeigeRezepte(rezepte, containerId) {
+  const liste = document.getElementById(containerId);
   if (liste === null) {
     return;
   }
@@ -364,7 +365,7 @@ function zeigeRezepte(rezepte) {
 // Beim Laden von rezepte.html direkt alle Rezepte anzeigen
 document.addEventListener("DOMContentLoaded", function () {
   const alleRezepte = ladeRezepte();
-  zeigeRezepte(alleRezepte);
+  zeigeRezepte(alleRezepte, "rezept-liste");
 });
 
 /**
@@ -465,7 +466,7 @@ document.addEventListener("DOMContentLoaded", function () {
         && rezeptPasstZurDauer(rezept, maxDauer);
     });
 
-    zeigeRezepte(gefundeneRezepte);
+    zeigeRezepte(gefundeneRezepte , "rezept-liste");
   });
 });
 
