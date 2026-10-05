@@ -369,6 +369,35 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
+ * Waehlt eine zufaellige Auswahl von Rezepten aus einer Liste.
+ * @param {Array<Object>} rezepte
+ * @param {number} anzahl wie viele Rezepte ausgewaehlt werden sollen
+ * @returns {Array<Object>}
+ */
+function waehleZufaelligeRezepte(rezepte, anzahl) {
+  const kopie = rezepte.slice();
+  const auswahl = [];
+
+  while (kopie.length && auswahl.length < anzahl) {
+    const zufallsIndex = Math.floor(Math.random() * kopie.length);
+    auswahl.push(kopie[zufallsIndex]);
+    kopie.splice(zufallsIndex, 1);
+  }
+  return auswahl;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const popularContainer = document.getElementById("popular-recipes");
+  if (popularContainer === null) {
+    return;
+  }
+  const alleRezepte = ladeRezepte();
+  const beliebteRezepte = waehleZufaelligeRezepte(alleRezepte, 3);
+  zeigeRezepte(beliebteRezepte, "popular-recipes");
+});
+
+
+/**
  * Prueft, ob ein Rezept zu einem Suchbegriff passt (Titel oder Zutatenname).
  * @param {Object} rezept
  * @param {string} suchbegriff
