@@ -51,6 +51,8 @@ const zubereitungFehler = document.getElementById("zubereitung-fehler");
 const bildInput = document.getElementById("bild");
 const bildEntfernenButton = document.getElementById("bild-entfernen");
 
+const formularLeerenButton = document.getElementById("formular-leeren");
+
 bildInput.addEventListener("change", function () {
     if (bildInput.files.length > 0) {
         bildEntfernenButton.style.display = "inline-block";
@@ -320,4 +322,40 @@ zubereitungInput.addEventListener("input", function () {
     } else {
         zubereitungFehler.textContent = "";
     }
+});
+
+formularLeerenButton.addEventListener("click", function () {
+
+    if (!confirm("Möchtest du wirklich alle Eingaben löschen?")) {
+        return;
+    }
+
+    rezeptForm.reset();
+
+    zutatenContainer.innerHTML = `
+        <div class="zutat">
+            <div>
+                <input type="text" class="menge" placeholder="Menge" inputmode="decimal">
+                <small class="menge-fehler fehler"></small>
+            </div>
+            <div>
+                <input type="text" class="einheit" placeholder="Einheit">
+                <small class="einheit-fehler fehler"></small>
+            </div>
+            <div>
+                <input type="text" class="zutat-name" placeholder="Zutat">
+                <small class="zutat-fehler fehler"></small>
+            </div>
+            <button type="button" class="zutat-entfernen" onclick="entferneZutat(this)">
+                Entfernen
+            </button>
+        </div>
+    `;
+
+    titelFehler.textContent = "";
+    dauerFehler.textContent = "";
+    portionenFehler.textContent = "";
+    zubereitungFehler.textContent = "";
+
+    bildEntfernenButton.style.display = "none";
 });
