@@ -153,13 +153,13 @@ const startRezepte = [
       { menge: 300, einheit: "g", name: "Champignons" },
       { menge: 2, einheit: "Stück", name: "Zwiebel" },
       { menge: 250, einheit: "g", name: "Risottoreis" },
-      { menge: 200, einheit: "ml", name: "veganer Weisswein" },
+      { menge: 200, einheit: "ml", name: "veganer Weißwein" },
       { menge: 600, einheit: "ml", name: "Gemüsebrühe" }
     ],
     zubereitung: [
       "Pilze putzen und in Scheiben schneiden.",
       "Zwiebeln anbraten, Risottoreis kurz mitrösten.",
-      "Mit Weisswein ablöschen, nach und nach Brühe angiessen und rühren.",
+      "Mit Weißwein ablöschen, nach und nach Brühe angießen und rühren.",
       "Pilze separat anbraten und unter das fertige Risotto mischen."
     ]
   },
