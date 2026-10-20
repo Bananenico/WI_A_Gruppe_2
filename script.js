@@ -319,11 +319,34 @@ function fuegeRezeptHinzu(neuesRezept) {
  */
 function loescheRezept(id) {
   const rezepte = ladeRezepte();
+
   const uebrigeRezepte = rezepte.filter(function (rezept) {
     return rezept.id !== id;
   });
 
   speichereRezepte(uebrigeRezepte);
+}
+
+function rezeptLoeschen(id) {
+  const rezept = findeRezeptNachId(id);
+
+  // Sicherheitscheck: Nur eigene Rezepte dürfen gelöscht werden.
+  if (!rezept || !rezept.eigenesRezept) {
+    return;
+  }
+
+  const bestaetigt = confirm(
+    "Möchtest du dieses Rezept wirklich löschen?"
+  );
+
+  if (!bestaetigt) {
+    return;
+  }
+
+  loescheRezept(id);
+
+  const alleRezepte = ladeRezepte();
+  zeigeRezepte(alleRezepte, "rezept-liste");
 }
 
 /**
@@ -339,6 +362,13 @@ function erstelleRezeptKarte(rezept) {
       <h3 class="rezept-titel">${rezept.titel}</h3>
       <p class="rezept-meta">${rezept.schwierigkeit} · ${rezept.dauerMinuten} Min. · ${rezept.geschmack} · ${rezept.ernaehrung}</p>
       <a class="rezept-link" href="details-rezept.html?id=${rezept.id}">Details ansehen</a>
+
+      ${rezept.eigenesRezept ? `
+        <button type="button" onclick="rezeptLoeschen(${rezept.id})">
+          Rezept löschen
+        </button>
+
+      ` : ""}
     </article>
   `;
 }
