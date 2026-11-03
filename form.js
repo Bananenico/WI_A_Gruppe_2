@@ -82,9 +82,25 @@ function leseBildAlsDataURL(datei) {
     });
 }
 
-rezeptForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
+async function verarbeiteBild() {
+    const bildDatei = bildInput.files[0];
 
+    if (!bildDatei) {
+        return "images/platzhalter.jpg";
+    }
+
+    if (!bildDatei.type.startsWith("image/")) {
+        throw new Error("Bitte wählen Sie eine Bilddatei aus.");
+    }
+
+    if (bildDatei.size > 2 * 1024 * 1024) {
+        throw new Error("Das Bild darf maximal 2 MB groß sein.");
+    }
+
+    return await leseBildAlsDataURL(bildDatei);
+}
+
+function pruefeFormular() {
     const titel = document.getElementById("titel").value.trim();
     const kategorie = document.getElementById("kategorie").value;
     const ernaehrung = document.getElementById("ernaehrung").value;
@@ -146,55 +162,39 @@ rezeptForm.addEventListener("submit", async function (event) {
         for (let i = 0; i < zutaten.length; i++) {
             const menge = zutaten[i].querySelector(".menge").value.trim();
             const einheit = zutaten[i].querySelector(".einheit").value.trim();
-            const name = zutaten[i]
-                .querySelector(".zutat-name")
-                .value
-                .trim();
+            const name = zutaten[i].querySelector(".zutat-name").value.trim();
 
-    if (menge !== "" && !/^\d+([.,]\d+)?$/.test(menge)) {
-        fehler.push("Bei Zutat " + (i + 1) + " muss die Menge eine Zahl sein.");
-    }
+            if (menge !== "" && !/^\d+([.,]\d+)?$/.test(menge)) {
+                fehler.push("Bei Zutat " + (i + 1) + " muss die Menge eine Zahl sein.");
+            }
 
-    if (einheit !== "" && /\d/.test(einheit)) {
-        fehler.push("Bei Zutat " + (i + 1) + " darf die Einheit keine Zahlen enthalten.");
-    }
+            if (einheit !== "" && /\d/.test(einheit)) {
+                fehler.push("Bei Zutat " + (i + 1) + " darf die Einheit keine Zahlen enthalten.");
+            }
 
-    if (name === "") {
-        fehler.push("Bei Zutat " + (i + 1) + " fehlt der Name.");
-    } else if (!/[a-zA-ZäöüÄÖÜß]/.test(name)) {
-        fehler.push("Bei Zutat " + (i + 1) + " muss der Name Buchstaben enthalten.");
+            if (name === "") {
+                fehler.push("Bei Zutat " + (i + 1) + " fehlt der Name.");
+            } else if (!/[a-zA-ZäöüÄÖÜß]/.test(name)) {
+                fehler.push("Bei Zutat " + (i + 1) + " muss der Name Buchstaben enthalten.");
             }
         }
     }
 
-    if (fehler.length > 0) {
-        alert("Bitte überprüfen Sie folgende Angaben:\n\n" + fehler.join("\n"));
-        return;
-    }
-
-   let bild = "images/platzhalter.jpg";
-const bildDatei = bildInput.files[0];
-
-if (bildDatei) {
-    if (!bildDatei.type.startsWith("image/")) {
-        alert("Bitte wählen Sie eine Bilddatei aus.");
-        return;
-    }
-
-    if (bildDatei.size > 2 * 1024 * 1024) {
-        alert("Das Bild darf maximal 2 MB groß sein.");
-        return;
-    }
-
-    try {
-        bild = await leseBildAlsDataURL(bildDatei);
-    } catch (error) {
-        alert("Das Bild konnte nicht gelesen werden.");
-        return;
-    }
+    return fehler;
 }
 
-    const neuesRezept = {
+function erstelleRezept(bild) {
+    const titel = document.getElementById("titel").value.trim();
+    const kategorie = document.getElementById("kategorie").value;
+    const ernaehrung = document.getElementById("ernaehrung").value;
+    const geschmack = document.getElementById("geschmack").value;
+    const schwierigkeit = document.getElementById("schwierigkeit").value;
+    const dauer = document.getElementById("dauer").value;
+    const portionen = document.getElementById("portionen").value;
+    const zubereitung = document.getElementById("zubereitung").value.trim();
+    const zutaten = document.querySelectorAll(".zutat");
+
+    return {
         titel: titel,
         kategorie: kategorie,
         ernaehrung: ernaehrung,
@@ -216,11 +216,37 @@ if (bildDatei) {
             return zeile !== "";
         })
     };
+}
 
+function speichereRezept(neuesRezept) {
     fuegeRezeptHinzu(neuesRezept);
 
     alert("Das Rezept wurde erfolgreich gespeichert!");
     rezeptForm.reset();
+}
+
+rezeptForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const fehler = pruefeFormular();
+
+    if (fehler.length > 0) {
+        alert("Bitte überprüfen Sie folgende Angaben:\n\n" + fehler.join("\n"));
+        return;
+    }
+
+   let bild;
+
+    try {
+            bild = await verarbeiteBild();
+    } catch (error) {
+            alert(error.message);
+            return;
+    }
+
+    const neuesRezept = erstelleRezept(bild);
+
+    speichereRezept(neuesRezept);
 });
 
 titelInput.addEventListener("input", function () {
