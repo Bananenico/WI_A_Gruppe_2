@@ -1,7 +1,5 @@
 // WI_A_Gruppe_2
 
-console.log("form.js wurde erfolgreich geladen.");
-
 const zutatenContainer = document.getElementById("zutaten-container");
 const zutatHinzufuegenButton = document.getElementById("zutat-hinzufuegen");
 
