@@ -11,15 +11,15 @@ zutatHinzufuegenButton.addEventListener("click", function () {
 
     neueZutat.innerHTML = `
         <div>
-            <input type="text" class="menge" placeholder="Menge" inputmode="decimal">
+            <input type="text" class="menge" placeholder="Menge" aria-label="Menge" inputmode="decimal">
             <small class="menge-fehler fehler"></small>
         </div>
         <div>
-            <input type="text" class="einheit" placeholder="Einheit">
+            <input type="text" class="einheit" placeholder="Einheit" aria-label="Einheit">
             <small class="einheit-fehler fehler"></small>
         </div>
         <div>
-            <input type="text" class="zutat-name" placeholder="Zutat">
+            <input type="text" class="zutat-name" placeholder="Zutat" aria-label="Zutat">
             <small class="zutat-fehler fehler"></small>
         </div>
         <button type="button" class="zutat-entfernen" onclick="entferneZutat(this)">Entfernen</button>
@@ -335,15 +335,15 @@ formularLeerenButton.addEventListener("click", function () {
     zutatenContainer.innerHTML = `
         <div class="zutat">
             <div>
-                <input type="text" class="menge" placeholder="Menge" inputmode="decimal">
+                <input type="text" class="menge" placeholder="Menge" aria-label="Menge" inputmode="decimal">
                 <small class="menge-fehler fehler"></small>
             </div>
             <div>
-                <input type="text" class="einheit" placeholder="Einheit">
+                <input type="text" class="einheit" placeholder="Einheit" aria-label="Einheit">
                 <small class="einheit-fehler fehler"></small>
             </div>
             <div>
-                <input type="text" class="zutat-name" placeholder="Zutat">
+                <input type="text" class="zutat-name" placeholder="Zutat" aria-label="Zutat">
                 <small class="zutat-fehler fehler"></small>
             </div>
             <button type="button" class="zutat-entfernen" onclick="entferneZutat(this)">

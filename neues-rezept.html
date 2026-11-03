@@ -77,31 +77,40 @@
             <input type="number" id="portionen" name="portionen" min="1">
             <small id="portionen-fehler" class="fehler"></small>
 
-            <label>Zutaten:</label>
+            
+            <fieldset>
+                <legend>Zutaten:</legend>
 
-            <div id="zutaten-container">
-                <div class="zutat">
+                <div id="zutaten-container">
+                    <div class="zutat">
 
-                    <div>
-                        <input type="text" class="menge" placeholder="Menge" inputmode="decimal">
-                        <small class="menge-fehler fehler"></small>
-                    </div>
-                    <div>
-                        <input type="text" class="einheit" placeholder="Einheit">
-                        <small class="einheit-fehler fehler"></small>
-                    </div>
-                    <div>
-                        <input type="text" class="zutat-name" placeholder="Zutat">
-                        <small class="zutat-fehler fehler"></small>
-                    </div>
+                        <div>
+                            <input type="text" class="menge" placeholder="Menge"
+                                aria-label="Menge" inputmode="decimal">
+                            <small class="menge-fehler fehler"></small>
+                        </div>
 
-                    <button type="button" class="zutat-entfernen" onclick="entferneZutat(this)">Entfernen</button>
+                        <div>
+                            <input type="text" class="einheit" placeholder="Einheit"
+                                aria-label="Einheit">
+                            <small class="einheit-fehler fehler"></small>
+                        </div>
+
+                        <div>
+                            <input type="text" class="zutat-name" placeholder="Zutat"
+                                aria-label="Zutat">
+                            <small class="zutat-fehler fehler"></small>
+                        </div>
+
+                        <button type="button" class="zutat-entfernen"
+                            onclick="entferneZutat(this)">Entfernen</button>
+                    </div>
                 </div>
-            </div>
 
-            <button type="button" id="zutat-hinzufuegen">
-                + Zutat hinzufügen
-            </button>
+                <button type="button" id="zutat-hinzufuegen">
+                    + Zutat hinzufügen
+                </button>
+            </fieldset>
 
             <label for="zubereitung">Zubereitung:</label>
             <textarea id="zubereitung" name="zubereitung" rows="6"></textarea>
