@@ -573,4 +573,13 @@ document.addEventListener("DOMContentLoaded", function () {
   zubereitungListe.innerHTML = rezept.zubereitung.map(function (schritt) {
     return "<li>" + schritt + "</li>";
   }).join("");
+
+  const loeschButton = document.getElementById("loesch-button");
+  loeschButton.hidden = !rezept.eigenesRezept;
+  loeschButton.addEventListener("click", function () {
+    const wurdeGeloescht = rezeptLoeschen(rezept.id);
+    if (wurdeGeloescht) {
+      window.location.href = "rezepte.html";
+    }
+  });
 });
