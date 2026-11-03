@@ -53,15 +53,15 @@ const formularLeerenButton = document.getElementById("formular-leeren");
 
 bildInput.addEventListener("change", function () {
     if (bildInput.files.length > 0) {
-        bildEntfernenButton.style.display = "inline-block";
+        bildEntfernenButton.hidden = false;
     } else {
-        bildEntfernenButton.style.display = "none";
+        bildEntfernenButton.hidden = true;
     }
 });
 
 bildEntfernenButton.addEventListener("click", function () {
     bildInput.value = "";
-    bildEntfernenButton.style.display = "none";
+    bildEntfernenButton.hidden = true;
 });
 
 function leseBildAlsDataURL(datei) {
@@ -381,5 +381,5 @@ formularLeerenButton.addEventListener("click", function () {
     portionenFehler.textContent = "";
     zubereitungFehler.textContent = "";
 
-    bildEntfernenButton.style.display = "none";
+    bildEntfernenButton.hidden = true;
 });
