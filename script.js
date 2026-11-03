@@ -330,9 +330,9 @@ function loescheRezept(id) {
 function rezeptLoeschen(id) {
   const rezept = findeRezeptNachId(id);
 
-  // Sicherheitscheck: Nur eigene Rezepte dürfen gelöscht werden.
+  
   if (!rezept || !rezept.eigenesRezept) {
-    return;
+    return false;
   }
 
   const bestaetigt = confirm(
@@ -340,8 +340,16 @@ function rezeptLoeschen(id) {
   );
 
   if (!bestaetigt) {
-    return;
+    return false;
   }
+
+  loescheRezept(id);
+
+  const alleRezepte = ladeRezepte();
+  zeigeRezepte(alleRezepte, "rezept-liste");
+
+  return true;
+}
 
   loescheRezept(id);
 
