@@ -343,18 +343,13 @@ function rezeptLoeschen(id) {
     return false;
   }
 
+
+
   loescheRezept(id);
 
   const alleRezepte = ladeRezepte();
   zeigeRezepte(alleRezepte, "rezept-liste");
-
   return true;
-}
-
-  loescheRezept(id);
-
-  const alleRezepte = ladeRezepte();
-  zeigeRezepte(alleRezepte, "rezept-liste");
 }
 
 /**
