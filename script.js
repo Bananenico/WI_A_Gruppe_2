@@ -366,8 +366,8 @@ function erstelleRezeptKarte(rezept) {
       <p class="rezept-meta">${rezept.schwierigkeit} · ${rezept.dauerMinuten} Min. · ${rezept.geschmack} · ${rezept.ernaehrung}</p>
       <a class="rezept-link" href="details-rezept.html?id=${rezept.id}">Details ansehen</a>
 
-      ${rezept.eigenesRezept ? `
-        <button type="button" onclick="rezeptLoeschen(${rezept.id})">
+            ${rezept.eigenesRezept ? `
+        <button type="button" class="rezept-loeschen-button" data-id="${rezept.id}">
           Rezept löschen
         </button>
 
@@ -395,10 +395,33 @@ function zeigeRezepte(rezepte, containerId) {
   liste.innerHTML = rezepte.map(erstelleRezeptKarte).join("");
 }
 
+/**
+ * Aktiviert die Loesch-Buttons innerhalb eines Containers per Event-Delegation,
+ * da die Buttons bei jedem Rendern neu erzeugt werden.
+ * @param {string} containerId
+ */
+function initialisiereLoeschButtons(containerId) {
+  const container = document.getElementById(containerId);
+  if (container === null) {
+    return;
+  }
+
+  container.addEventListener("click", function (event) {
+    const button = event.target.closest(".rezept-loeschen-button");
+    if (button === null) {
+      return;
+    }
+
+    const id = Number(button.dataset.id);
+    rezeptLoeschen(id);
+  });
+}
+
 // Beim Laden von rezepte.html direkt alle Rezepte anzeigen
 document.addEventListener("DOMContentLoaded", function () {
   const alleRezepte = ladeRezepte();
   zeigeRezepte(alleRezepte, "rezept-liste");
+  initialisiereLoeschButtons("rezept-liste");
 });
 
 /**
@@ -427,6 +450,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const alleRezepte = ladeRezepte();
   const beliebteRezepte = waehleZufaelligeRezepte(alleRezepte, 3);
   zeigeRezepte(beliebteRezepte, "popular-recipes");
+  initialisiereLoeschButtons("popular-recipes");
 });
 
 
@@ -573,4 +597,13 @@ document.addEventListener("DOMContentLoaded", function () {
   zubereitungListe.innerHTML = rezept.zubereitung.map(function (schritt) {
     return "<li>" + schritt + "</li>";
   }).join("");
+
+  const loeschButton = document.getElementById("loesch-button");
+  loeschButton.hidden = !rezept.eigenesRezept;
+  loeschButton.addEventListener("click", function () {
+    const wurdeGeloescht = rezeptLoeschen(rezept.id);
+    if (wurdeGeloescht) {
+      window.location.href = "rezepte.html";
+    }
+  });
 });
