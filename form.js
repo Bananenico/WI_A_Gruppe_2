@@ -20,7 +20,7 @@ zutatHinzufuegenButton.addEventListener("click", function () {
             <input type="text" class="zutat-name" placeholder="Zutat" aria-label="Zutat">
             <small class="zutat-fehler fehler"></small>
         </div>
-        <button type="button" class="zutat-entfernen" onclick="entferneZutat(this)">Entfernen</button>
+        <button type="button" class="zutat-entfernen">Entfernen</button>
     `;
 
     zutatenContainer.appendChild(neueZutat);
@@ -29,6 +29,12 @@ function entferneZutat(button) {
     const zutat = button.parentElement;
     zutat.remove();
 }
+
+zutatenContainer.addEventListener("click", function (event) {
+    if (event.target.classList.contains("zutat-entfernen")) {
+        entferneZutat(event.target);
+    }
+});
 
 // Formular-Validierung
 
@@ -370,7 +376,7 @@ formularLeerenButton.addEventListener("click", function () {
                 <input type="text" class="zutat-name" placeholder="Zutat" aria-label="Zutat">
                 <small class="zutat-fehler fehler"></small>
             </div>
-            <button type="button" class="zutat-entfernen" onclick="entferneZutat(this)">
+            <button type="button" class="zutat-entfernen">
                 Entfernen
             </button>
         </div>
