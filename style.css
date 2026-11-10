@@ -333,7 +333,6 @@ form#rezept-form button[type="submit"] {
     max-height: 380px;
     object-fit: cover;                          /* Bild wird beschnitten statt verzerrt */
     border-radius: var(--radius-karte);
-    border-radius: var(--farbe-text-schwach);
 }
 
 #detail-meta {
