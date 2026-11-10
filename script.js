@@ -238,10 +238,18 @@ function ladeRezepte() {
 
 /**
  * Speichert die uebergebene Rezeptliste im localStorage.
+ * Schlaegt fehl, wenn der Speicher voll ist (z. B. durch grosse Bilder).
  * @param {Array<Object>} rezepte
+ * @returns {boolean} true, wenn das Speichern geklappt hat
  */
 function speichereRezepte(rezepte) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(rezepte));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(rezepte));
+    return true;
+  } catch (fehler) {
+    console.warn("Rezepte konnten nicht gespeichert werden.", fehler);
+    return false;
+  }
 }
 
 /**
@@ -298,7 +306,8 @@ function naechsteId(rezepte) {
 /**
  * Fuegt ein neues Rezept zur gespeicherten Rezeptliste hinzu.
  * @param {Object} neuesRezept Rezept ohne id
- * @returns {Object} das gespeicherte Rezept inklusive vergebener id
+ * @returns {Object|null} das gespeicherte Rezept inklusive vergebener id,
+ *   oder null, wenn der Speicher voll ist
  */
 function fuegeRezeptHinzu(neuesRezept) {
   const rezepte = ladeRezepte();
@@ -308,7 +317,9 @@ function fuegeRezeptHinzu(neuesRezept) {
   );
 
   rezepte.push(rezeptMitId);
-  speichereRezepte(rezepte);
+  if (!speichereRezepte(rezepte)) {
+    return null;
+  }
 
   return rezeptMitId;
 }
