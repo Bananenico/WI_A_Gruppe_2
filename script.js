@@ -282,7 +282,7 @@ function rendereZutatenliste(rezept, portionenAnzahl) {
   const zutatenListe = document.getElementById("detail-zutaten");
   zutatenListe.innerHTML = rezept.zutaten.map(function (zutat) {
     const umgerechnetMenge = (zutat.menge / rezept.portionen) * portionenAnzahl;
-    return "<li>" + rundeMenge(umgerechnetMenge) + " " + zutat.einheit + " " + zutat.name + "</li>";
+    return "<li>" + rundeMenge(umgerechnetMenge) + " " + maskiereHtml(zutat.einheit) + " " + maskiereHtml(zutat.name) + "</li>";
   }).join("");
 }
   
@@ -364,6 +364,21 @@ function rezeptLoeschen(id) {
 }
 
 /**
+ * Wandelt HTML-Sonderzeichen in Entities um, damit Nutzereingaben
+ * als Text angezeigt und nicht als HTML ausgefuehrt werden.
+ * @param {*} wert
+ * @returns {string}
+ */
+function maskiereHtml(wert) {
+  return String(wert)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+/**
  * Erzeugt das HTML fuer eine einzelne Rezeptkarte.
  * @param {Object} rezept
  * @returns {string} HTML-String der Karte
@@ -372,9 +387,9 @@ function rezeptLoeschen(id) {
 function erstelleRezeptKarte(rezept) {
   return `
     <article class="rezept-karte">
-      <img class="rezept-bild" src="${rezept.bild}" alt="${rezept.titel}">
-      <h3 class="rezept-titel">${rezept.titel}</h3>
-      <p class="rezept-meta">${rezept.schwierigkeit} · ${rezept.dauerMinuten} Min. · ${rezept.geschmack} · ${rezept.ernaehrung}</p>
+      <img class="rezept-bild" src="${maskiereHtml(rezept.bild)}" alt="${maskiereHtml(rezept.titel)}">
+      <h3 class="rezept-titel">${maskiereHtml(rezept.titel)}</h3>
+      <p class="rezept-meta">${maskiereHtml(rezept.schwierigkeit)} · ${maskiereHtml(rezept.dauerMinuten)} Min. · ${maskiereHtml(rezept.geschmack)} · ${maskiereHtml(rezept.ernaehrung)}</p>
       <a class="rezept-link" href="details-rezept.html?id=${rezept.id}">Details ansehen</a>
 
             ${rezept.eigenesRezept ? `
@@ -615,7 +630,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const zubereitungListe = document.getElementById("detail-zubereitung");
   zubereitungListe.innerHTML = rezept.zubereitung.map(function (schritt) {
-    return "<li>" + schritt + "</li>";
+    return "<li>" + maskiereHtml(schritt) + "</li>";
   }).join("");
 
   const loeschButton = document.getElementById("loesch-button");
