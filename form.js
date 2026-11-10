@@ -106,8 +106,9 @@ async function verarbeiteBild() {
         throw new Error("Bitte wählen Sie eine Bilddatei aus.");
     }
 
-    if (bildDatei.size > 2 * 1024 * 1024) {
-        throw new Error("Das Bild darf maximal 2 MB groß sein.");
+    // Base64-Bilder werden im localStorage gespeichert (ca. 5 MB insgesamt), daher max. 500 KB
+    if (bildDatei.size > 500 * 1024) {
+        throw new Error("Das Bild darf maximal 500 KB groß sein.");
     }
 
     return await leseBildAlsDataURL(bildDatei);
