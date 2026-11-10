@@ -300,7 +300,16 @@ function setzeFormularZurueck() {
 }
 
 function speichereRezept(neuesRezept) {
-    fuegeRezeptHinzu(neuesRezept);
+    const gespeichertesRezept = fuegeRezeptHinzu(neuesRezept);
+
+    // fuegeRezeptHinzu() gibt null zurück, wenn der localStorage voll ist
+    if (gespeichertesRezept === null) {
+        alert(
+            "Das Rezept konnte nicht gespeichert werden, weil der Speicher voll ist.\n\n" +
+            "Bitte wählen Sie ein kleineres Bild oder löschen Sie eigene Rezepte, die Sie nicht mehr brauchen."
+        );
+        return;
+    }
 
     alert("Das Rezept wurde erfolgreich gespeichert!");
     setzeFormularZurueck();
