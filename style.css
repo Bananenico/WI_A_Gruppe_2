@@ -128,9 +128,10 @@ footer {
     display: flex;                          /* Aktiviert Flexbox-Layout-System --> Elemente darin können besser angeordnet werden */
     flex-direction: column;                 /* Elemente der Flexbox werden untereinander angereiht */
 }
-#popular-recipes .rezept-bild {
-    height: auto;
-    aspect-ratio: 4 / 3;
+.rezept.bild {
+    width: 100%;
+    aspect-ratio: 4 / 3;                    /* Alle Bildkarten haben dasselbe Bildformat */
+    object-fit: cover;
 }
 .rezept-titel {
     font-size: 1rem;                                        /* 1rem --> Schrift genau wie der normal Fließtext */
