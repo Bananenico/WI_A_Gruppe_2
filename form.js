@@ -89,14 +89,14 @@ bildEntfernenButton.addEventListener("click", function () {
 });
 
 function leseBildAlsDataURL(datei) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         const reader = new FileReader();
 
-        reader.onload = function() {
+        reader.onload = function () {
             resolve(reader.result);
         };
 
-        reader.onerror = function() {
+        reader.onerror = function () {
             reject(new Error("Bild konnte nicht gelesen werden."));
         };
 
@@ -316,13 +316,13 @@ rezeptForm.addEventListener("submit", async function (event) {
         return;
     }
 
-   let bild;
+    let bild;
 
     try {
-            bild = await verarbeiteBild();
+        bild = await verarbeiteBild();
     } catch (error) {
-            alert(error.message);
-            return;
+        alert(error.message);
+        return;
     }
 
     const neuesRezept = erstelleRezept(bild);
@@ -350,28 +350,28 @@ document.addEventListener("input", function (event) {
     }
 
     if (event.target.classList.contains("menge")) {
-    const menge = event.target.value.trim();
-    const fehler = zutat.querySelector(".menge-fehler");
+        const menge = event.target.value.trim();
+        const fehler = zutat.querySelector(".menge-fehler");
 
-    if (menge !== "" && menge.startsWith("-")) {
-        fehler.textContent = "Menge darf nicht negativ sein.";
-    } else if (menge !== "" && !/^\d+([.,]\d+)?$/.test(menge)) {
-        fehler.textContent = "Bitte eine Zahl eingeben.";
-    } else {
-        fehler.textContent = "";
+        if (menge !== "" && menge.startsWith("-")) {
+            fehler.textContent = "Menge darf nicht negativ sein.";
+        } else if (menge !== "" && !/^\d+([.,]\d+)?$/.test(menge)) {
+            fehler.textContent = "Bitte eine Zahl eingeben.";
+        } else {
+            fehler.textContent = "";
         }
     }
 
-   if (event.target.classList.contains("einheit")) {
-    const einheit = event.target.value.trim();
-    const fehler = zutat.querySelector(".einheit-fehler");
+    if (event.target.classList.contains("einheit")) {
+        const einheit = event.target.value.trim();
+        const fehler = zutat.querySelector(".einheit-fehler");
 
-    if (einheit !== "" && /^\d+$/.test(einheit)) {
-        fehler.textContent = "Bitte Einheit eingeben.";
-    } else if (/\d/.test(einheit)) {
-        fehler.textContent = "Einheit darf keine Zahlen enthalten.";
-    } else {
-        fehler.textContent = "";
+        if (einheit !== "" && /^\d+$/.test(einheit)) {
+            fehler.textContent = "Bitte Einheit eingeben.";
+        } else if (/\d/.test(einheit)) {
+            fehler.textContent = "Einheit darf keine Zahlen enthalten.";
+        } else {
+            fehler.textContent = "";
         }
     }
 
