@@ -327,10 +327,15 @@ function loescheRezept(id) {
   speichereRezepte(uebrigeRezepte);
 }
 
+/**
+ * Fragt nach einer Bestaetigung und loescht ein eigenes Rezept.
+ * Das Neuzeichnen der Ansicht uebernimmt die aufrufende Stelle.
+ * @param {number} id
+ * @returns {boolean} true, wenn das Rezept geloescht wurde
+ */
 function rezeptLoeschen(id) {
   const rezept = findeRezeptNachId(id);
 
-  
   if (!rezept || !rezept.eigenesRezept) {
     return false;
   }
@@ -343,12 +348,7 @@ function rezeptLoeschen(id) {
     return false;
   }
 
-
-
   loescheRezept(id);
-
-  const alleRezepte = ladeRezepte();
-  zeigeRezepte(alleRezepte, "rezept-liste");
   return true;
 }
 
@@ -413,7 +413,16 @@ function initialisiereLoeschButtons(containerId) {
     }
 
     const id = Number(button.dataset.id);
-    rezeptLoeschen(id);
+    const wurdeGeloescht = rezeptLoeschen(id);
+    if (!wurdeGeloescht) {
+      return;
+    }
+
+    // Nur die geloeschte Karte entfernen, damit aktive Filter erhalten bleiben
+    button.closest(".rezept-karte").remove();
+    if (container.querySelector(".rezept-karte") === null) {
+      zeigeRezepte([], containerId);
+    }
   });
 }
 
