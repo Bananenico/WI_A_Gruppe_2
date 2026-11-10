@@ -10,15 +10,24 @@ function erstelleZutatZeile() {
 
     zutatZeile.innerHTML = `
         <div>
-            <input type="text" class="menge" placeholder="Menge" aria-label="Menge" inputmode="decimal">
+            <label>
+                <span class="visuell-versteckt">Menge</span>
+                <input type="text" class="menge" placeholder="Menge" inputmode="decimal">
+            </label>
             <small class="menge-fehler fehler"></small>
         </div>
         <div>
-            <input type="text" class="einheit" placeholder="Einheit" aria-label="Einheit">
+            <label>
+                <span class="visuell-versteckt">Einheit</span>
+                <input type="text" class="einheit" placeholder="Einheit">
+            </label>
             <small class="einheit-fehler fehler"></small>
         </div>
         <div>
-            <input type="text" class="zutat-name" placeholder="Zutat" aria-label="Zutat">
+            <label>
+                <span class="visuell-versteckt">Zutat</span>
+                <input type="text" class="zutat-name" placeholder="Zutat">
+            </label>
             <small class="zutat-fehler fehler"></small>
         </div>
         <button type="button" class="zutat-entfernen">Entfernen</button>
