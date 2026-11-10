@@ -274,11 +274,26 @@ function erstelleRezept(bild) {
     };
 }
 
+// Setzt das Formular komplett zurück: Eingaben, Zutatenzeilen, Fehlertexte und Bild-Button
+function setzeFormularZurueck() {
+    rezeptForm.reset();
+
+    zutatenContainer.innerHTML = "";
+    zutatenContainer.appendChild(erstelleZutatZeile());
+
+    titelFehler.textContent = "";
+    dauerFehler.textContent = "";
+    portionenFehler.textContent = "";
+    zubereitungFehler.textContent = "";
+
+    bildEntfernenButton.hidden = true;
+}
+
 function speichereRezept(neuesRezept) {
     fuegeRezeptHinzu(neuesRezept);
 
     alert("Das Rezept wurde erfolgreich gespeichert!");
-    rezeptForm.reset();
+    setzeFormularZurueck();
 }
 
 rezeptForm.addEventListener("submit", async function (event) {
@@ -375,20 +390,9 @@ zubereitungInput.addEventListener("input", function () {
 });
 
 formularLeerenButton.addEventListener("click", function () {
-
     if (!confirm("Möchtest du wirklich alle Eingaben löschen?")) {
         return;
     }
 
-    rezeptForm.reset();
-
-    zutatenContainer.innerHTML = "";
-    zutatenContainer.appendChild(erstelleZutatZeile());
-
-    titelFehler.textContent = "";
-    dauerFehler.textContent = "";
-    portionenFehler.textContent = "";
-    zubereitungFehler.textContent = "";
-
-    bildEntfernenButton.hidden = true;
+    setzeFormularZurueck();
 });
