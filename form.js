@@ -3,11 +3,12 @@
 const zutatenContainer = document.getElementById("zutaten-container");
 const zutatHinzufuegenButton = document.getElementById("zutat-hinzufuegen");
 
-zutatHinzufuegenButton.addEventListener("click", function () {
-    const neueZutat = document.createElement("div");
-    neueZutat.className = "zutat";
+// Erstellt eine neue, leere Zutatenzeile und gibt sie zurück
+function erstelleZutatZeile() {
+    const zutatZeile = document.createElement("div");
+    zutatZeile.className = "zutat";
 
-    neueZutat.innerHTML = `
+    zutatZeile.innerHTML = `
         <div>
             <input type="text" class="menge" placeholder="Menge" aria-label="Menge" inputmode="decimal">
             <small class="menge-fehler fehler"></small>
@@ -23,8 +24,13 @@ zutatHinzufuegenButton.addEventListener("click", function () {
         <button type="button" class="zutat-entfernen">Entfernen</button>
     `;
 
-    zutatenContainer.appendChild(neueZutat);
+    return zutatZeile;
+}
+
+zutatHinzufuegenButton.addEventListener("click", function () {
+    zutatenContainer.appendChild(erstelleZutatZeile());
 });
+
 function entferneZutat(button) {
     const zutat = button.parentElement;
     zutat.remove();
@@ -362,25 +368,8 @@ formularLeerenButton.addEventListener("click", function () {
 
     rezeptForm.reset();
 
-    zutatenContainer.innerHTML = `
-        <div class="zutat">
-            <div>
-                <input type="text" class="menge" placeholder="Menge" aria-label="Menge" inputmode="decimal">
-                <small class="menge-fehler fehler"></small>
-            </div>
-            <div>
-                <input type="text" class="einheit" placeholder="Einheit" aria-label="Einheit">
-                <small class="einheit-fehler fehler"></small>
-            </div>
-            <div>
-                <input type="text" class="zutat-name" placeholder="Zutat" aria-label="Zutat">
-                <small class="zutat-fehler fehler"></small>
-            </div>
-            <button type="button" class="zutat-entfernen">
-                Entfernen
-            </button>
-        </div>
-    `;
+    zutatenContainer.innerHTML = "";
+    zutatenContainer.appendChild(erstelleZutatZeile());
 
     titelFehler.textContent = "";
     dauerFehler.textContent = "";
