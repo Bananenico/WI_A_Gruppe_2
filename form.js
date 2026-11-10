@@ -27,6 +27,9 @@ function erstelleZutatZeile() {
     return zutatZeile;
 }
 
+// Beim Laden der Seite die erste leere Zutatenzeile anzeigen
+zutatenContainer.appendChild(erstelleZutatZeile());
+
 zutatHinzufuegenButton.addEventListener("click", function () {
     zutatenContainer.appendChild(erstelleZutatZeile());
 });

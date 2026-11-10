@@ -81,31 +81,8 @@
             <fieldset>
                 <legend>Zutaten:</legend>
 
-                <div id="zutaten-container">
-                    <div class="zutat">
-
-                        <div>
-                            <input type="text" class="menge" placeholder="Menge"
-                                aria-label="Menge" inputmode="decimal">
-                            <small class="menge-fehler fehler"></small>
-                        </div>
-
-                        <div>
-                            <input type="text" class="einheit" placeholder="Einheit"
-                                aria-label="Einheit">
-                            <small class="einheit-fehler fehler"></small>
-                        </div>
-
-                        <div>
-                            <input type="text" class="zutat-name" placeholder="Zutat"
-                                aria-label="Zutat">
-                            <small class="zutat-fehler fehler"></small>
-                        </div>
-
-                        <button type="button" class="zutat-entfernen"
-                            >Entfernen</button>
-                    </div>
-                </div>
+                <!-- Die Zutatenzeilen werden per JavaScript (form.js) erzeugt -->
+                <div id="zutaten-container"></div>
 
                 <button type="button" id="zutat-hinzufuegen">
                     + Zutat hinzufügen
