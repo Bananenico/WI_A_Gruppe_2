@@ -113,6 +113,56 @@ async function verarbeiteBild() {
     return await leseBildAlsDataURL(bildDatei);
 }
 
+// Prüffunktionen: geben den Fehlertext zurück oder "", wenn alles passt.
+// Sie werden in pruefeFormular() und in den input-Listenern genutzt.
+function pruefeTitel(wert) {
+    const titel = wert.trim();
+
+    if (titel === "") {
+        return "Bitte einen Rezeptnamen eingeben.";
+    }
+    if (titel.length < 2) {
+        return "Der Rezeptname muss mindestens 2 Zeichen enthalten.";
+    }
+    if (!/[a-zA-ZäöüÄÖÜß]/.test(titel)) {
+        return "Der Rezeptname muss Buchstaben enthalten.";
+    }
+    if (titel.length > 100) {
+        return "Der Rezeptname darf maximal 100 Zeichen enthalten.";
+    }
+    return "";
+}
+
+function pruefeDauer(wert) {
+    const dauer = Number(wert);
+
+    if (wert === "") {
+        return "Bitte eine Zubereitungszeit eingeben.";
+    }
+    if (dauer <= 0) {
+        return "Die Zubereitungszeit muss größer als 0 sein.";
+    }
+    if (dauer > 1440) {
+        return "Die Zubereitungszeit darf maximal 1440 Minuten betragen.";
+    }
+    return "";
+}
+
+function pruefePortionen(wert) {
+    const portionen = Number(wert);
+
+    if (wert === "") {
+        return "Bitte die Anzahl der Portionen eingeben.";
+    }
+    if (portionen <= 0) {
+        return "Die Portionen müssen größer als 0 sein.";
+    }
+    if (portionen > 100) {
+        return "Es sind maximal 100 Portionen möglich.";
+    }
+    return "";
+}
+
 function pruefeFormular() {
     const titel = document.getElementById("titel").value.trim();
     const kategorie = document.getElementById("kategorie").value;
@@ -125,14 +175,9 @@ function pruefeFormular() {
 
     const fehler = [];
 
-    if (titel === "") {
-        fehler.push("Rezeptname fehlt.");
-    } else if (titel.length < 2) {
-        fehler.push("Rezeptname muss mindestens 2 Zeichen enthalten.");
-    } else if (!/[a-zA-ZäöüÄÖÜß]/.test(titel)) {
-        fehler.push("Rezeptname muss Buchstaben enthalten.");
-    } else if (titel.length > 100) {
-        fehler.push("Rezeptname darf maximal 100 Zeichen enthalten.");
+    const titelMeldung = pruefeTitel(titel);
+    if (titelMeldung !== "") {
+        fehler.push(titelMeldung);
     }
 
     if (kategorie === "") {
@@ -151,16 +196,14 @@ function pruefeFormular() {
         fehler.push("Schwierigkeit wurde nicht ausgewählt.");
     }
 
-    if (dauer === "" || Number(dauer) <= 0) {
-        fehler.push("Zubereitungszeit muss größer als 0 sein.");
-    } else if (Number(dauer) > 1440) {
-        fehler.push("Zubereitungszeit darf maximal 1440 Minuten sein.");
+    const dauerMeldung = pruefeDauer(dauer);
+    if (dauerMeldung !== "") {
+        fehler.push(dauerMeldung);
     }
 
-    if (portionen === "" || Number(portionen) <= 0) {
-        fehler.push("Portionen müssen größer als 0 sein.");
-    } else if (Number(portionen) > 100) {
-        fehler.push("Portionen dürfen maximal 100 sein.");
+    const portionenMeldung = pruefePortionen(portionen);
+    if (portionenMeldung !== "") {
+        fehler.push(portionenMeldung);
     }
 
     if (zubereitung === "") {
@@ -263,47 +306,15 @@ rezeptForm.addEventListener("submit", async function (event) {
 });
 
 titelInput.addEventListener("input", function () {
-    const titel = titelInput.value.trim();
-
-    if (titel === "") {
-        titelFehler.textContent = "Bitte Rezeptnamen eingeben.";
-    } else if (titel.length < 2) {
-        titelFehler.textContent = "Mindestens 2 Zeichen.";
-    } else if (!/[a-zA-ZäöüÄÖÜß]/.test(titel)) {
-        titelFehler.textContent = "Bitte Buchstaben eingeben.";
-    } else if (titel.length > 100) {
-        titelFehler.textContent = "Maximal 100 Zeichen.";
-    } else {
-        titelFehler.textContent = "";
-    }
+    titelFehler.textContent = pruefeTitel(titelInput.value);
 });
 
 dauerInput.addEventListener("input", function () {
-    const dauer = Number(dauerInput.value);
-
-    if (dauerInput.value === "") {
-        dauerFehler.textContent = "Bitte Zubereitungszeit eingeben.";
-    } else if (dauer <= 0) {
-        dauerFehler.textContent = "Muss größer als 0 sein.";
-    } else if (dauer > 1440) {
-        dauerFehler.textContent = "Maximal 1440 Minuten.";
-    } else {
-        dauerFehler.textContent = "";
-    }
+    dauerFehler.textContent = pruefeDauer(dauerInput.value);
 });
 
 portionenInput.addEventListener("input", function () {
-    const portionen = Number(portionenInput.value);
-
-    if (portionenInput.value === "") {
-        portionenFehler.textContent = "Bitte Portionen eingeben.";
-    } else if (portionen <= 0) {
-        portionenFehler.textContent = "Muss größer als 0 sein.";
-    } else if (portionen > 100) {
-        portionenFehler.textContent = "Maximal 100 Portionen.";
-    } else {
-        portionenFehler.textContent = "";
-    }
+    portionenFehler.textContent = pruefePortionen(portionenInput.value);
 });
 
 document.addEventListener("input", function (event) {
