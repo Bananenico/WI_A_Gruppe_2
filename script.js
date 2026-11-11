@@ -357,7 +357,7 @@ function loescheRezept(id) {
  * @param {number} id
  * @returns {boolean} true, wenn das Rezept geloescht wurde
  */
-function rezeptLoeschen(id) {
+function bestaetigeUndLoescheRezept(id) {
   const rezept = findeRezeptNachId(id);
 
   if (!rezept || !rezept.eigenesRezept) {
@@ -462,7 +462,7 @@ function initialisiereLoeschButtons(containerId) {
     }
 
     const id = Number(button.dataset.id);
-    const wurdeGeloescht = rezeptLoeschen(id);
+    const wurdeGeloescht = bestaetigeUndLoescheRezept(id);
     if (!wurdeGeloescht) {
       return;
     }
@@ -585,7 +585,7 @@ function rezeptPasstZurSchwierigkeit(rezept, schwierigkeit) {
   return rezept.schwierigkeit === schwierigkeit;
 }
 
-// Filterformular: bei Absenden nach Suchbegriff und Schwierigkeit filtern
+// Filterformular: bei Absenden nach Suchbegriff, Schwierigkeit, Geschmack, Ernaehrung und Dauer filtern
 document.addEventListener("DOMContentLoaded", function () {
   const filterFormular = document.getElementById("filter-formular");
   if (filterFormular === null) {
@@ -673,7 +673,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const loeschButton = document.getElementById("loesch-button");
   loeschButton.hidden = !rezept.eigenesRezept;
   loeschButton.addEventListener("click", function () {
-    const wurdeGeloescht = rezeptLoeschen(rezept.id);
+    const wurdeGeloescht = bestaetigeUndLoescheRezept(rezept.id);
     if (wurdeGeloescht) {
       window.location.href = "rezepte.html";
     }
