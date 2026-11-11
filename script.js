@@ -591,6 +591,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+/**
+ * Zeigt auf der Detailseite einen Hinweis an, wenn kein Rezept zur id existiert,
+ * und blendet Bild, Zutaten und Zubereitung aus.
+ * @param {HTMLElement} titelElement
+ */
+function zeigeRezeptNichtGefunden(titelElement) {
+  titelElement.textContent = "Rezept nicht gefunden";
+  document.getElementById("detail-meta").textContent =
+    "Dieses Rezept existiert nicht oder wurde gelöscht.";
+  document.getElementById("detail-bild").remove();
+  document.getElementById("detail-zutaten").closest("section").hidden = true;
+  document.getElementById("detail-zubereitung").closest("section").hidden = true;
+}
+
 // Detailansicht: Rezept anhand der id aus der URL anzeigen
 document.addEventListener("DOMContentLoaded", function () {
   const titelElement = document.getElementById("detail-titel");
@@ -603,7 +617,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const rezept = findeRezeptNachId(id);
 
   if (rezept === undefined) {
-    titelElement.textContent = "Rezept nicht gefunden";
+    zeigeRezeptNichtGefunden(titelElement);
     return;
   }
 
