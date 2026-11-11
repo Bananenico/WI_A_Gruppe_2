@@ -7,6 +7,19 @@
 
 const STORAGE_KEY = "wi_a_gruppe2_rezepte";
 
+// Anzeigenamen fuer die intern gespeicherten Werte (intern bewusst ohne Umlaute)
+const ANZEIGENAMEN = {
+  leicht: "Leicht",
+  mittel: "Mittel",
+  schwer: "Schwer",
+  suess: "Süß",
+  herzhaft: "Herzhaft",
+  vegan: "Vegan",
+  vegetarisch: "Vegetarisch",
+  fleisch: "Mit Fleisch",
+  fisch: "Fisch"
+};
+
 const startRezepte = [
   {
     id: 1,
@@ -364,6 +377,16 @@ function rezeptLoeschen(id) {
 }
 
 /**
+ * Liefert den Anzeigenamen zu einem intern gespeicherten Wert.
+ * Unbekannte Werte werden unveraendert zurueckgegeben.
+ * @param {string} wert z. B. "suess"
+ * @returns {string} z. B. "Süß"
+ */
+function anzeigeName(wert) {
+  return ANZEIGENAMEN[wert] || wert;
+}
+
+/**
  * Wandelt HTML-Sonderzeichen in Entities um, damit Nutzereingaben
  * als Text angezeigt und nicht als HTML ausgefuehrt werden.
  * @param {*} wert
@@ -389,7 +412,7 @@ function erstelleRezeptKarte(rezept) {
     <article class="rezept-karte">
       <img class="rezept-bild" src="${maskiereHtml(rezept.bild)}" alt="${maskiereHtml(rezept.titel)}">
       <h3 class="rezept-titel">${maskiereHtml(rezept.titel)}</h3>
-      <p class="rezept-meta">${maskiereHtml(rezept.schwierigkeit)} · ${maskiereHtml(rezept.dauerMinuten)} Min. · ${maskiereHtml(rezept.geschmack)} · ${maskiereHtml(rezept.ernaehrung)}</p>
+      <p class="rezept-meta">${maskiereHtml(anzeigeName(rezept.schwierigkeit))} · ${maskiereHtml(rezept.dauerMinuten)} Min. · ${maskiereHtml(anzeigeName(rezept.geschmack))} · ${maskiereHtml(anzeigeName(rezept.ernaehrung))}</p>
       <a class="rezept-link" href="details-rezept.html?id=${rezept.id}">Details ansehen</a>
 
             ${rezept.eigenesRezept ? `
@@ -628,7 +651,7 @@ document.addEventListener("DOMContentLoaded", function () {
   bildElement.alt = rezept.titel;
 
   const metaElement = document.getElementById("detail-meta");
-  metaElement.textContent = rezept.schwierigkeit + " · " + rezept.dauerMinuten + " Min. · " + rezept.portionen + " Portionen";
+  metaElement.textContent = anzeigeName(rezept.schwierigkeit) + " · " + rezept.dauerMinuten + " Min. · " + rezept.portionen + " Portionen";
 
  rendereZutatenliste(rezept, rezept.portionen);
 
