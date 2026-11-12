@@ -9,223 +9,223 @@ const STORAGE_KEY = "wi_a_gruppe2_rezepte";
 
 // Anzeigenamen fuer die intern gespeicherten Werte (intern bewusst ohne Umlaute)
 const ANZEIGENAMEN = {
-  leicht: "Leicht",
-  mittel: "Mittel",
-  schwer: "Schwer",
-  suess: "Süß",
-  herzhaft: "Herzhaft",
-  vegan: "Vegan",
-  vegetarisch: "Vegetarisch",
-  fleisch: "Mit Fleisch",
-  fisch: "Fisch"
+    leicht: "Leicht",
+    mittel: "Mittel",
+    schwer: "Schwer",
+    suess: "Süß",
+    herzhaft: "Herzhaft",
+    vegan: "Vegan",
+    vegetarisch: "Vegetarisch",
+    fleisch: "Mit Fleisch",
+    fisch: "Fisch"
 };
 
 const startRezepte = [
-  {
-    id: 1,
-    titel: "Spaghetti Aglio e Olio",
-    kategorie: "Kochen",
-    ernaehrung: "vegan",
-    geschmack: "herzhaft",
-    eigenesRezept: false,
-    schwierigkeit: "leicht",
-    dauerMinuten: 25,
-    portionen: 4,
-    bild: "images/aglio-e-olio.jpg",
-    zutaten: [
-      { menge: 400, einheit: "g", name: "Spaghetti" },
-      { menge: 4, einheit: "Zehen", name: "Knoblauch" },
-      { menge: 150, einheit: "ml", name: "Olivenöl" },
-      { menge: 1, einheit: "Prise", name: "Salz" },
-      { menge: 1, einheit: "Prise", name: "Pfeffer" }
-    ],
-    zubereitung: [
-      "Spaghetti in Salzwasser bissfest kochen.",
-      "Knoblauch schälen und in Scheiben schneiden.",
-      "Olivenöl erhitzen und Knoblauch vorsichtig anbraten.",
-      "Spaghetti abgiessen und mit dem Knoblauch-Olivenöl vermischen.",
-      "Mit Salz und Pfeffer abschmecken."
-    ]
-  },
-  {
-    id: 2,
-    titel: "Chili sin Carne",
-    kategorie: "Kochen",
-    ernaehrung: "vegan",
-    geschmack: "herzhaft",
-    eigenesRezept: false,
-    schwierigkeit: "leicht",
-    dauerMinuten: 60,
-    portionen: 4,
-    bild: "images/chili-sin-carne.jpg",
-    zutaten: [
-      { menge: 2, einheit: "Zehen", name: "Knoblauch" },
-      { menge: 1, einheit: "Stück", name: "Zwiebel" },
-      { menge: 2, einheit: "Stück", name: "Paprika" },
-      { menge: 250, einheit: "g", name: "rote Linsen" },
-      { menge: 480, einheit: "g", name: "Kidneybohnen" },
-      { menge: 400, einheit: "g", name: "gehackte Tomaten" },
-      { menge: 400, einheit: "ml", name: "Gemüsebrühe" }
-    ],
-    zubereitung: [
-      "Zwiebel, Knoblauch und Paprika klein schneiden und anbraten.",
-      "Tomatenmark und Gewürze kurz mitbraten.",
-      "Linsen, Bohnen und Tomaten hinzufügen.",
-      "Mit Gemüsebrühe aufgiessen und köcheln lassen, bis die Linsen weich sind.",
-      "Mit Salz und Pfeffer abschmecken."
-    ]
-  },
-  {
-    id: 3,
-    titel: "Hähnchencurry mit Reis",
-    kategorie: "Kochen",
-    ernaehrung: "fleisch",
-    geschmack: "herzhaft",
-    eigenesRezept: false,
-    schwierigkeit: "leicht",
-    dauerMinuten: 25,
-    portionen: 2,
-    bild: "images/haehnchencurry.jpg",
-    zutaten: [
-      { menge: 125, einheit: "g", name: "Basmatireis" },
-      { menge: 250, einheit: "g", name: "Hähnchenbrustfilet" },
-      { menge: 1, einheit: "Stück", name: "Zwiebel" },
-      { menge: 1, einheit: "TL", name: "Curry" },
-      { menge: 200, einheit: "ml", name: "Kokosmilch" }
-    ],
-    zubereitung: [
-      "Reis nach Packungsanleitung kochen.",
-      "Hähnchen in Stücke schneiden und anbraten, dann herausnehmen.",
-      "Zwiebel anbraten, Curry dazugeben.",
-      "Mit Brühe und Kokosmilch ablöschen.",
-      "Hähnchen wieder dazugeben und kurz köcheln lassen."
-    ]
-  },
-  {
-    id: 4,
-    titel: "Gemüselasagne",
-    kategorie: "Kochen",
-    ernaehrung: "vegetarisch",
-    geschmack: "herzhaft",
-    eigenesRezept: false,
-    schwierigkeit: "mittel",
-    dauerMinuten: 78,
-    portionen: 4,
-    bild: "images/gemueselasagne.jpg",
-    zutaten: [
-      { menge: 450, einheit: "g", name: "Aubergine" },
-      { menge: 150, einheit: "g", name: "Zucchini" },
-      { menge: 480, einheit: "g", name: "Tomaten" },
-      { menge: 180, einheit: "g", name: "Feta" },
-      { menge: 250, einheit: "g", name: "Lasagneplatten" }
-    ],
-    zubereitung: [
-      "Aubergine und Zucchini würfeln und anbraten.",
-      "Tomatensauce zubereiten, helle Sauce zubereiten.",
-      "Lasagneplatten, Gemüse und Saucen abwechselnd schichten.",
-      "Mit Feta bestreuen und goldbraun backen."
-    ]
-  },
-  {
-    id: 5,
-    titel: "Lachs mit Ofengemüse",
-    kategorie: "Kochen",
-    ernaehrung: "fisch",
-    geschmack: "herzhaft",
-    eigenesRezept: false,
-    schwierigkeit: "mittel",
-    dauerMinuten: 47,
-    portionen: 2,
-    bild: "images/lachs-ofengemuese.jpg",
-    zutaten: [
-      { menge: 2, einheit: "Stück", name: "Lachsfilet" },
-      { menge: 1, einheit: "Stück", name: "Zucchini" },
-      { menge: 1, einheit: "Stück", name: "Paprika" },
-      { menge: 1, einheit: "Stück", name: "Zwiebel" },
-      { menge: 1, einheit: "EL", name: "Olivenöl" }
-    ],
-    zubereitung: [
-      "Gemüse waschen, schneiden und mit Öl, Salz und Pfeffer vermischen.",
-      "Auf einem Backblech vorgaren.",
-      "Lachs würzen und zum Gemüse aufs Blech legen.",
-      "Fertig garen, bis Lachs durch und Gemüse weich ist."
-    ]
-  },
-  {
-    id: 6,
-    titel: "Veganes Risotto mit Pilzen",
-    kategorie: "Kochen",
-    ernaehrung: "vegan",
-    geschmack: "herzhaft",
-    eigenesRezept: false,
-    schwierigkeit: "mittel",
-    dauerMinuten: 40,
-    portionen: 4,
-    bild: "images/risotto-pilze.jpg",
-    zutaten: [
-      { menge: 300, einheit: "g", name: "Champignons" },
-      { menge: 2, einheit: "Stück", name: "Zwiebel" },
-      { menge: 250, einheit: "g", name: "Risottoreis" },
-      { menge: 200, einheit: "ml", name: "veganer Weißwein" },
-      { menge: 600, einheit: "ml", name: "Gemüsebrühe" }
-    ],
-    zubereitung: [
-      "Pilze putzen und in Scheiben schneiden.",
-      "Zwiebeln anbraten, Risottoreis kurz mitrösten.",
-      "Mit Weißwein ablöschen, nach und nach Brühe angießen und rühren.",
-      "Pilze separat anbraten und unter das fertige Risotto mischen."
-    ]
-  },
-  {
-    id: 7,
-    titel: "Marmorkuchen",
-    kategorie: "Backen",
-    ernaehrung: "vegetarisch",
-    geschmack: "suess",
-    eigenesRezept: false,
-    schwierigkeit: "leicht",
-    dauerMinuten: 85,
-    portionen: 12,
-    bild: "images/marmorkuchen.jpg",
-    zutaten: [
-      { menge: 250, einheit: "g", name: "Butter" },
-      { menge: 400, einheit: "g", name: "Weizenmehl" },
-      { menge: 200, einheit: "g", name: "Zucker" },
-      { menge: 4, einheit: "Stück", name: "Eier" },
-      { menge: 30, einheit: "g", name: "Kakaopulver" }
-    ],
-    zubereitung: [
-      "Butter, Zucker und Salz cremig rühren, Eier unterrühren.",
-      "Mehl, Stärke und Backpulver mit Milch dazugeben.",
-      "Hälfte des Teigs abnehmen und mit Kakao vermischen.",
-      "Teige abwechselnd in die Form geben und verziehen, dann backen."
-    ]
-  },
-  {
-    id: 8,
-    titel: "Zitronenkuchen",
-    kategorie: "Backen",
-    ernaehrung: "vegetarisch",
-    geschmack: "suess",
-    eigenesRezept: false,
-    schwierigkeit: "leicht",
-    dauerMinuten: 60,
-    portionen: 8,
-    bild: "images/zitronenkuchen.jpg",
-    zutaten: [
-      { menge: 1, einheit: "Stück", name: "Bio-Zitrone" },
-      { menge: 180, einheit: "g", name: "Butter" },
-      { menge: 150, einheit: "g", name: "Zucker" },
-      { menge: 4, einheit: "Stück", name: "Eier" },
-      { menge: 250, einheit: "g", name: "Weizenmehl" }
-    ],
-    zubereitung: [
-      "Zitrone abreiben und auspressen.",
-      "Butter, Zucker und Vanillezucker cremig rühren, Eier einzeln unterrühren.",
-      "Zitronenschale und -saft dazugeben, Mehl und Backpulver unterrühren.",
-      "In eine Kastenform füllen und backen, danach mit Zitronenguss überziehen."
-    ]
-  }
+    {
+        id: 1,
+        titel: "Spaghetti Aglio e Olio",
+        kategorie: "Kochen",
+        ernaehrung: "vegan",
+        geschmack: "herzhaft",
+        eigenesRezept: false,
+        schwierigkeit: "leicht",
+        dauerMinuten: 25,
+        portionen: 4,
+        bild: "images/aglio-e-olio.jpg",
+        zutaten: [
+            { menge: 400, einheit: "g", name: "Spaghetti" },
+            { menge: 4, einheit: "Zehen", name: "Knoblauch" },
+            { menge: 150, einheit: "ml", name: "Olivenöl" },
+            { menge: 1, einheit: "Prise", name: "Salz" },
+            { menge: 1, einheit: "Prise", name: "Pfeffer" }
+        ],
+        zubereitung: [
+            "Spaghetti in Salzwasser bissfest kochen.",
+            "Knoblauch schälen und in Scheiben schneiden.",
+            "Olivenöl erhitzen und Knoblauch vorsichtig anbraten.",
+            "Spaghetti abgiessen und mit dem Knoblauch-Olivenöl vermischen.",
+            "Mit Salz und Pfeffer abschmecken."
+        ]
+    },
+    {
+        id: 2,
+        titel: "Chili sin Carne",
+        kategorie: "Kochen",
+        ernaehrung: "vegan",
+        geschmack: "herzhaft",
+        eigenesRezept: false,
+        schwierigkeit: "leicht",
+        dauerMinuten: 60,
+        portionen: 4,
+        bild: "images/chili-sin-carne.jpg",
+        zutaten: [
+            { menge: 2, einheit: "Zehen", name: "Knoblauch" },
+            { menge: 1, einheit: "Stück", name: "Zwiebel" },
+            { menge: 2, einheit: "Stück", name: "Paprika" },
+            { menge: 250, einheit: "g", name: "rote Linsen" },
+            { menge: 480, einheit: "g", name: "Kidneybohnen" },
+            { menge: 400, einheit: "g", name: "gehackte Tomaten" },
+            { menge: 400, einheit: "ml", name: "Gemüsebrühe" }
+        ],
+        zubereitung: [
+            "Zwiebel, Knoblauch und Paprika klein schneiden und anbraten.",
+            "Tomatenmark und Gewürze kurz mitbraten.",
+            "Linsen, Bohnen und Tomaten hinzufügen.",
+            "Mit Gemüsebrühe aufgiessen und köcheln lassen, bis die Linsen weich sind.",
+            "Mit Salz und Pfeffer abschmecken."
+        ]
+    },
+    {
+        id: 3,
+        titel: "Hähnchencurry mit Reis",
+        kategorie: "Kochen",
+        ernaehrung: "fleisch",
+        geschmack: "herzhaft",
+        eigenesRezept: false,
+        schwierigkeit: "leicht",
+        dauerMinuten: 25,
+        portionen: 2,
+        bild: "images/haehnchencurry.jpg",
+        zutaten: [
+            { menge: 125, einheit: "g", name: "Basmatireis" },
+            { menge: 250, einheit: "g", name: "Hähnchenbrustfilet" },
+            { menge: 1, einheit: "Stück", name: "Zwiebel" },
+            { menge: 1, einheit: "TL", name: "Curry" },
+            { menge: 200, einheit: "ml", name: "Kokosmilch" }
+        ],
+        zubereitung: [
+            "Reis nach Packungsanleitung kochen.",
+            "Hähnchen in Stücke schneiden und anbraten, dann herausnehmen.",
+            "Zwiebel anbraten, Curry dazugeben.",
+            "Mit Brühe und Kokosmilch ablöschen.",
+            "Hähnchen wieder dazugeben und kurz köcheln lassen."
+        ]
+    },
+    {
+        id: 4,
+        titel: "Gemüselasagne",
+        kategorie: "Kochen",
+        ernaehrung: "vegetarisch",
+        geschmack: "herzhaft",
+        eigenesRezept: false,
+        schwierigkeit: "mittel",
+        dauerMinuten: 78,
+        portionen: 4,
+        bild: "images/gemueselasagne.jpg",
+        zutaten: [
+            { menge: 450, einheit: "g", name: "Aubergine" },
+            { menge: 150, einheit: "g", name: "Zucchini" },
+            { menge: 480, einheit: "g", name: "Tomaten" },
+            { menge: 180, einheit: "g", name: "Feta" },
+            { menge: 250, einheit: "g", name: "Lasagneplatten" }
+        ],
+        zubereitung: [
+            "Aubergine und Zucchini würfeln und anbraten.",
+            "Tomatensauce zubereiten, helle Sauce zubereiten.",
+            "Lasagneplatten, Gemüse und Saucen abwechselnd schichten.",
+            "Mit Feta bestreuen und goldbraun backen."
+        ]
+    },
+    {
+        id: 5,
+        titel: "Lachs mit Ofengemüse",
+        kategorie: "Kochen",
+        ernaehrung: "fisch",
+        geschmack: "herzhaft",
+        eigenesRezept: false,
+        schwierigkeit: "mittel",
+        dauerMinuten: 47,
+        portionen: 2,
+        bild: "images/lachs-ofengemuese.jpg",
+        zutaten: [
+            { menge: 2, einheit: "Stück", name: "Lachsfilet" },
+            { menge: 1, einheit: "Stück", name: "Zucchini" },
+            { menge: 1, einheit: "Stück", name: "Paprika" },
+            { menge: 1, einheit: "Stück", name: "Zwiebel" },
+            { menge: 1, einheit: "EL", name: "Olivenöl" }
+        ],
+        zubereitung: [
+            "Gemüse waschen, schneiden und mit Öl, Salz und Pfeffer vermischen.",
+            "Auf einem Backblech vorgaren.",
+            "Lachs würzen und zum Gemüse aufs Blech legen.",
+            "Fertig garen, bis Lachs durch und Gemüse weich ist."
+        ]
+    },
+    {
+        id: 6,
+        titel: "Veganes Risotto mit Pilzen",
+        kategorie: "Kochen",
+        ernaehrung: "vegan",
+        geschmack: "herzhaft",
+        eigenesRezept: false,
+        schwierigkeit: "mittel",
+        dauerMinuten: 40,
+        portionen: 4,
+        bild: "images/risotto-pilze.jpg",
+        zutaten: [
+            { menge: 300, einheit: "g", name: "Champignons" },
+            { menge: 2, einheit: "Stück", name: "Zwiebel" },
+            { menge: 250, einheit: "g", name: "Risottoreis" },
+            { menge: 200, einheit: "ml", name: "veganer Weißwein" },
+            { menge: 600, einheit: "ml", name: "Gemüsebrühe" }
+        ],
+        zubereitung: [
+            "Pilze putzen und in Scheiben schneiden.",
+            "Zwiebeln anbraten, Risottoreis kurz mitrösten.",
+            "Mit Weißwein ablöschen, nach und nach Brühe angießen und rühren.",
+            "Pilze separat anbraten und unter das fertige Risotto mischen."
+        ]
+    },
+    {
+        id: 7,
+        titel: "Marmorkuchen",
+        kategorie: "Backen",
+        ernaehrung: "vegetarisch",
+        geschmack: "suess",
+        eigenesRezept: false,
+        schwierigkeit: "leicht",
+        dauerMinuten: 85,
+        portionen: 12,
+        bild: "images/marmorkuchen.jpg",
+        zutaten: [
+            { menge: 250, einheit: "g", name: "Butter" },
+            { menge: 400, einheit: "g", name: "Weizenmehl" },
+            { menge: 200, einheit: "g", name: "Zucker" },
+            { menge: 4, einheit: "Stück", name: "Eier" },
+            { menge: 30, einheit: "g", name: "Kakaopulver" }
+        ],
+        zubereitung: [
+            "Butter, Zucker und Salz cremig rühren, Eier unterrühren.",
+            "Mehl, Stärke und Backpulver mit Milch dazugeben.",
+            "Hälfte des Teigs abnehmen und mit Kakao vermischen.",
+            "Teige abwechselnd in die Form geben und verziehen, dann backen."
+        ]
+    },
+    {
+        id: 8,
+        titel: "Zitronenkuchen",
+        kategorie: "Backen",
+        ernaehrung: "vegetarisch",
+        geschmack: "suess",
+        eigenesRezept: false,
+        schwierigkeit: "leicht",
+        dauerMinuten: 60,
+        portionen: 8,
+        bild: "images/zitronenkuchen.jpg",
+        zutaten: [
+            { menge: 1, einheit: "Stück", name: "Bio-Zitrone" },
+            { menge: 180, einheit: "g", name: "Butter" },
+            { menge: 150, einheit: "g", name: "Zucker" },
+            { menge: 4, einheit: "Stück", name: "Eier" },
+            { menge: 250, einheit: "g", name: "Weizenmehl" }
+        ],
+        zubereitung: [
+            "Zitrone abreiben und auspressen.",
+            "Butter, Zucker und Vanillezucker cremig rühren, Eier einzeln unterrühren.",
+            "Zitronenschale und -saft dazugeben, Mehl und Backpulver unterrühren.",
+            "In eine Kastenform füllen und backen, danach mit Zitronenguss überziehen."
+        ]
+    }
 ];
 
 /**
@@ -234,19 +234,19 @@ const startRezepte = [
  * @returns {Array<Object>} Liste aller Rezepte
  */
 function ladeRezepte() {
-  const gespeichert = localStorage.getItem(STORAGE_KEY);
+    const gespeichert = localStorage.getItem(STORAGE_KEY);
 
-  if (gespeichert === null) {
-    speichereRezepte(startRezepte);
-    return startRezepte;
-  }
+    if (gespeichert === null) {
+        speichereRezepte(startRezepte);
+        return startRezepte;
+    }
 
-  try {
-    return JSON.parse(gespeichert);
-  } catch (fehler) {
-    console.error("Gespeicherte Rezepte konnten nicht gelesen werden.", fehler);
-    return startRezepte;
-  }
+    try {
+        return JSON.parse(gespeichert);
+    } catch (fehler) {
+        console.error("Gespeicherte Rezepte konnten nicht gelesen werden.", fehler);
+        return startRezepte;
+    }
 }
 
 /**
@@ -256,13 +256,13 @@ function ladeRezepte() {
  * @returns {boolean} true, wenn das Speichern geklappt hat
  */
 function speichereRezepte(rezepte) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(rezepte));
-    return true;
-  } catch (fehler) {
-    console.warn("Rezepte konnten nicht gespeichert werden.", fehler);
-    return false;
-  }
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(rezepte));
+        return true;
+    } catch (fehler) {
+        console.warn("Rezepte konnten nicht gespeichert werden.", fehler);
+        return false;
+    }
 }
 
 /**
@@ -271,20 +271,20 @@ function speichereRezepte(rezepte) {
  * @returns {Object|undefined}
  */
 function findeRezeptNachId(id) {
-  const rezepte = ladeRezepte();
-  return rezepte.find(function (rezept) {
-    return rezept.id === id;
-  });
-} 
+    const rezepte = ladeRezepte();
+    return rezepte.find(function (rezept) {
+        return rezept.id === id;
+    });
+}
 
-  /**
+/**
  * Rundet eine Menge auf eine Nachkommastelle, zeigt aber ganze Zahlen ohne Nachkommastelle.
  * @param {number} menge
  * @returns {string}
  */
 function rundeMenge(menge) {
-  const gerundet = Math.round(menge * 10) / 10;
-  return Number.isInteger(gerundet) ? String(gerundet) : gerundet.toFixed(1);
+    const gerundet = Math.round(menge * 10) / 10;
+    return Number.isInteger(gerundet) ? String(gerundet) : gerundet.toFixed(1);
 }
 /**
  * Rendert die Zutatenliste, umgerechnet auf die gewuenschte Portionenzahl.
@@ -292,28 +292,38 @@ function rundeMenge(menge) {
  * @param {number} portionenAnzahl
  */
 function rendereZutatenliste(rezept, portionenAnzahl) {
-  const zutatenListe = document.getElementById("detail-zutaten");
-  zutatenListe.innerHTML = rezept.zutaten.map(function (zutat) {
-    const umgerechnetMenge = (zutat.menge / rezept.portionen) * portionenAnzahl;
-    return "<li>" + rundeMenge(umgerechnetMenge) + " " + maskiereHtml(zutat.einheit) + " " + maskiereHtml(zutat.name) + "</li>";
-  }).join("");
+    const zutatenListe = document.getElementById("detail-zutaten");
+    zutatenListe.innerHTML = rezept.zutaten
+        .map(function (zutat) {
+            const umgerechnetMenge = (zutat.menge / rezept.portionen) * portionenAnzahl;
+            return (
+                "<li>" +
+                rundeMenge(umgerechnetMenge) +
+                " " +
+                maskiereHtml(zutat.einheit) +
+                " " +
+                maskiereHtml(zutat.name) +
+                "</li>"
+            );
+        })
+        .join("");
 }
-  
+
 /**
  * Ermittelt die naechste freie id fuer ein neues Rezept.
  * @param {Array<Object>} rezepte
  * @returns {number}
  */
 function naechsteId(rezepte) {
-  if (rezepte.length === 0) {
-    return 1;
-  }
+    if (rezepte.length === 0) {
+        return 1;
+    }
 
-  const hoechsteId = rezepte.reduce(function (bisherHoechste, rezept) {
-    return Math.max(bisherHoechste, rezept.id);
-  }, 0);
+    const hoechsteId = rezepte.reduce(function (bisherHoechste, rezept) {
+        return Math.max(bisherHoechste, rezept.id);
+    }, 0);
 
-  return hoechsteId + 1;
+    return hoechsteId + 1;
 }
 
 /**
@@ -323,18 +333,15 @@ function naechsteId(rezepte) {
  *   oder null, wenn der Speicher voll ist
  */
 function fuegeRezeptHinzu(neuesRezept) {
-  const rezepte = ladeRezepte();
-  const rezeptMitId = Object.assign(
-    { id: naechsteId(rezepte), eigenesRezept: true },
-    neuesRezept
-  );
+    const rezepte = ladeRezepte();
+    const rezeptMitId = Object.assign({ id: naechsteId(rezepte), eigenesRezept: true }, neuesRezept);
 
-  rezepte.push(rezeptMitId);
-  if (!speichereRezepte(rezepte)) {
-    return null;
-  }
+    rezepte.push(rezeptMitId);
+    if (!speichereRezepte(rezepte)) {
+        return null;
+    }
 
-  return rezeptMitId;
+    return rezeptMitId;
 }
 
 /**
@@ -342,13 +349,13 @@ function fuegeRezeptHinzu(neuesRezept) {
  * @param {number} id
  */
 function loescheRezept(id) {
-  const rezepte = ladeRezepte();
+    const rezepte = ladeRezepte();
 
-  const uebrigeRezepte = rezepte.filter(function (rezept) {
-    return rezept.id !== id;
-  });
+    const uebrigeRezepte = rezepte.filter(function (rezept) {
+        return rezept.id !== id;
+    });
 
-  speichereRezepte(uebrigeRezepte);
+    speichereRezepte(uebrigeRezepte);
 }
 
 /**
@@ -358,22 +365,20 @@ function loescheRezept(id) {
  * @returns {boolean} true, wenn das Rezept geloescht wurde
  */
 function bestaetigeUndLoescheRezept(id) {
-  const rezept = findeRezeptNachId(id);
+    const rezept = findeRezeptNachId(id);
 
-  if (!rezept || !rezept.eigenesRezept) {
-    return false;
-  }
+    if (!rezept || !rezept.eigenesRezept) {
+        return false;
+    }
 
-  const bestaetigt = confirm(
-    "Möchtest du dieses Rezept wirklich löschen?"
-  );
+    const bestaetigt = confirm("Möchtest du dieses Rezept wirklich löschen?");
 
-  if (!bestaetigt) {
-    return false;
-  }
+    if (!bestaetigt) {
+        return false;
+    }
 
-  loescheRezept(id);
-  return true;
+    loescheRezept(id);
+    return true;
 }
 
 /**
@@ -383,7 +388,7 @@ function bestaetigeUndLoescheRezept(id) {
  * @returns {string} z. B. "Süß"
  */
 function anzeigeName(wert) {
-  return ANZEIGENAMEN[wert] || wert;
+    return ANZEIGENAMEN[wert] || wert;
 }
 
 /**
@@ -393,12 +398,12 @@ function anzeigeName(wert) {
  * @returns {string}
  */
 function maskiereHtml(wert) {
-  return String(wert)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
+    return String(wert)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
 }
 
 /**
@@ -408,21 +413,26 @@ function maskiereHtml(wert) {
  */
 
 function erstelleRezeptKarte(rezept) {
-  return `
-    <article class="rezept-karte">
-      <img class="rezept-bild" src="${maskiereHtml(rezept.bild)}" alt="${maskiereHtml(rezept.titel)}">
-      <h3 class="rezept-titel">${maskiereHtml(rezept.titel)}</h3>
-      <p class="rezept-meta">${maskiereHtml(anzeigeName(rezept.schwierigkeit))} · ${maskiereHtml(rezept.dauerMinuten)} Min. · ${maskiereHtml(anzeigeName(rezept.geschmack))} · ${maskiereHtml(anzeigeName(rezept.ernaehrung))}</p>
-      <a class="rezept-link" href="details-rezept.html?id=${rezept.id}">Details ansehen</a>
+    const meta = [
+        anzeigeName(rezept.schwierigkeit),
+        rezept.dauerMinuten + " Min.",
+        anzeigeName(rezept.geschmack),
+        anzeigeName(rezept.ernaehrung)
+    ].join(" · ");
 
-            ${rezept.eigenesRezept ? `
-        <button type="button" class="rezept-loeschen-button" data-id="${rezept.id}">
-          Rezept löschen
-        </button>
+    const loeschButton = rezept.eigenesRezept
+        ? `<button type="button" class="rezept-loeschen-button" data-id="${rezept.id}">Rezept löschen</button>`
+        : "";
 
-      ` : ""}
-    </article>
-  `;
+    return `
+        <article class="rezept-karte">
+            <img class="rezept-bild" src="${maskiereHtml(rezept.bild)}" alt="${maskiereHtml(rezept.titel)}">
+            <h3 class="rezept-titel">${maskiereHtml(rezept.titel)}</h3>
+            <p class="rezept-meta">${maskiereHtml(meta)}</p>
+            <a class="rezept-link" href="details-rezept.html?id=${rezept.id}">Details ansehen</a>
+            ${loeschButton}
+        </article>
+    `;
 }
 
 /**
@@ -431,17 +441,17 @@ function erstelleRezeptKarte(rezept) {
  * @param {string} containerId id des Containers, in den die Karten gerendert werden
  */
 function zeigeRezepte(rezepte, containerId) {
-  const liste = document.getElementById(containerId);
-  if (liste === null) {
-    return;
-  }
+    const liste = document.getElementById(containerId);
+    if (liste === null) {
+        return;
+    }
 
-  if (rezepte.length === 0) {
-    liste.innerHTML = "<p>Keine Rezepte gefunden.</p>";
-    return;
-  }
+    if (rezepte.length === 0) {
+        liste.innerHTML = "<p>Keine Rezepte gefunden.</p>";
+        return;
+    }
 
-  liste.innerHTML = rezepte.map(erstelleRezeptKarte).join("");
+    liste.innerHTML = rezepte.map(erstelleRezeptKarte).join("");
 }
 
 /**
@@ -450,36 +460,36 @@ function zeigeRezepte(rezepte, containerId) {
  * @param {string} containerId
  */
 function initialisiereLoeschButtons(containerId) {
-  const container = document.getElementById(containerId);
-  if (container === null) {
-    return;
-  }
-
-  container.addEventListener("click", function (event) {
-    const button = event.target.closest(".rezept-loeschen-button");
-    if (button === null) {
-      return;
+    const container = document.getElementById(containerId);
+    if (container === null) {
+        return;
     }
 
-    const id = Number(button.dataset.id);
-    const wurdeGeloescht = bestaetigeUndLoescheRezept(id);
-    if (!wurdeGeloescht) {
-      return;
-    }
+    container.addEventListener("click", function (event) {
+        const button = event.target.closest(".rezept-loeschen-button");
+        if (button === null) {
+            return;
+        }
 
-    // Nur die geloeschte Karte entfernen, damit aktive Filter erhalten bleiben
-    button.closest(".rezept-karte").remove();
-    if (container.querySelector(".rezept-karte") === null) {
-      zeigeRezepte([], containerId);
-    }
-  });
+        const id = Number(button.dataset.id);
+        const wurdeGeloescht = bestaetigeUndLoescheRezept(id);
+        if (!wurdeGeloescht) {
+            return;
+        }
+
+        // Nur die geloeschte Karte entfernen, damit aktive Filter erhalten bleiben
+        button.closest(".rezept-karte").remove();
+        if (container.querySelector(".rezept-karte") === null) {
+            zeigeRezepte([], containerId);
+        }
+    });
 }
 
 // Beim Laden von rezepte.html direkt alle Rezepte anzeigen
 document.addEventListener("DOMContentLoaded", function () {
-  const alleRezepte = ladeRezepte();
-  zeigeRezepte(alleRezepte, "rezept-liste");
-  initialisiereLoeschButtons("rezept-liste");
+    const alleRezepte = ladeRezepte();
+    zeigeRezepte(alleRezepte, "rezept-liste");
+    initialisiereLoeschButtons("rezept-liste");
 });
 
 /**
@@ -489,28 +499,27 @@ document.addEventListener("DOMContentLoaded", function () {
  * @returns {Array<Object>}
  */
 function waehleZufaelligeRezepte(rezepte, anzahl) {
-  const kopie = rezepte.slice();
-  const auswahl = [];
+    const kopie = rezepte.slice();
+    const auswahl = [];
 
-  while (kopie.length && auswahl.length < anzahl) {
-    const zufallsIndex = Math.floor(Math.random() * kopie.length);
-    auswahl.push(kopie[zufallsIndex]);
-    kopie.splice(zufallsIndex, 1);
-  }
-  return auswahl;
+    while (kopie.length && auswahl.length < anzahl) {
+        const zufallsIndex = Math.floor(Math.random() * kopie.length);
+        auswahl.push(kopie[zufallsIndex]);
+        kopie.splice(zufallsIndex, 1);
+    }
+    return auswahl;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const popularContainer = document.getElementById("popular-recipes");
-  if (popularContainer === null) {
-    return;
-  }
-  const alleRezepte = ladeRezepte();
-  const beliebteRezepte = waehleZufaelligeRezepte(alleRezepte, 3);
-  zeigeRezepte(beliebteRezepte, "popular-recipes");
-  initialisiereLoeschButtons("popular-recipes");
+    const popularContainer = document.getElementById("popular-recipes");
+    if (popularContainer === null) {
+        return;
+    }
+    const alleRezepte = ladeRezepte();
+    const beliebteRezepte = waehleZufaelligeRezepte(alleRezepte, 3);
+    zeigeRezepte(beliebteRezepte, "popular-recipes");
+    initialisiereLoeschButtons("popular-recipes");
 });
-
 
 /**
  * Prueft, ob ein Rezept zu einem Suchbegriff passt (Titel oder Zutatenname).
@@ -519,18 +528,18 @@ document.addEventListener("DOMContentLoaded", function () {
  * @returns {boolean}
  */
 function rezeptPasstZurSuche(rezept, suchbegriff) {
-  const begriff = suchbegriff.trim().toLowerCase();
+    const begriff = suchbegriff.trim().toLowerCase();
 
-  if (begriff === "") {
-    return true;
-  }
+    if (begriff === "") {
+        return true;
+    }
 
-  const titelPasst = rezept.titel.toLowerCase().includes(begriff);
-  const zutatPasst = rezept.zutaten.some(function (zutat) {
-    return zutat.name.toLowerCase().includes(begriff);
-  });
+    const titelPasst = rezept.titel.toLowerCase().includes(begriff);
+    const zutatPasst = rezept.zutaten.some(function (zutat) {
+        return zutat.name.toLowerCase().includes(begriff);
+    });
 
-  return titelPasst || zutatPasst;
+    return titelPasst || zutatPasst;
 }
 
 /**
@@ -540,10 +549,10 @@ function rezeptPasstZurSuche(rezept, suchbegriff) {
  * @returns {boolean}
  */
 function rezeptPasstZumGeschmack(rezept, geschmack) {
-  if (geschmack === "alle") {
-    return true;
-  }
-  return rezept.geschmack === geschmack;
+    if (geschmack === "alle") {
+        return true;
+    }
+    return rezept.geschmack === geschmack;
 }
 
 /**
@@ -553,10 +562,10 @@ function rezeptPasstZumGeschmack(rezept, geschmack) {
  * @returns {boolean}
  */
 function rezeptPasstZurErnaehrung(rezept, ernaehrung) {
-  if (ernaehrung === "alle") {
-    return true;
-  }
-  return rezept.ernaehrung === ernaehrung;
+    if (ernaehrung === "alle") {
+        return true;
+    }
+    return rezept.ernaehrung === ernaehrung;
 }
 
 /**
@@ -566,10 +575,10 @@ function rezeptPasstZurErnaehrung(rezept, ernaehrung) {
  * @returns {boolean}
  */
 function rezeptPasstZurDauer(rezept, maxDauer) {
-  if (maxDauer === "") {
-    return true;
-  }
-  return rezept.dauerMinuten <= Number(maxDauer);
+    if (maxDauer === "") {
+        return true;
+    }
+    return rezept.dauerMinuten <= Number(maxDauer);
 }
 
 /**
@@ -579,39 +588,41 @@ function rezeptPasstZurDauer(rezept, maxDauer) {
  * @returns {boolean}
  */
 function rezeptPasstZurSchwierigkeit(rezept, schwierigkeit) {
-  if (schwierigkeit === "alle") {
-    return true;
-  }
-  return rezept.schwierigkeit === schwierigkeit;
+    if (schwierigkeit === "alle") {
+        return true;
+    }
+    return rezept.schwierigkeit === schwierigkeit;
 }
 
 // Filterformular: bei Absenden nach Suchbegriff, Schwierigkeit, Geschmack, Ernaehrung und Dauer filtern
 document.addEventListener("DOMContentLoaded", function () {
-  const filterFormular = document.getElementById("filter-formular");
-  if (filterFormular === null) {
-    return;
-  }
+    const filterFormular = document.getElementById("filter-formular");
+    if (filterFormular === null) {
+        return;
+    }
 
-  filterFormular.addEventListener("submit", function (event) {
-    event.preventDefault();
+    filterFormular.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    const suchbegriff = document.getElementById("suche").value;
-    const schwierigkeit = document.getElementById("schwierigkeit").value;
-    const geschmack = document.querySelector('input[name="geschmack"]:checked').value;
-    const ernaehrung = document.querySelector('input[name="ernaehrung"]:checked').value;
-    const maxDauer = document.getElementById("max-dauer").value;
-    const alleRezepte = ladeRezepte();
+        const suchbegriff = document.getElementById("suche").value;
+        const schwierigkeit = document.getElementById("schwierigkeit").value;
+        const geschmack = document.querySelector('input[name="geschmack"]:checked').value;
+        const ernaehrung = document.querySelector('input[name="ernaehrung"]:checked').value;
+        const maxDauer = document.getElementById("max-dauer").value;
+        const alleRezepte = ladeRezepte();
 
-    const gefundeneRezepte = alleRezepte.filter(function (rezept) {
-      return rezeptPasstZurSuche(rezept, suchbegriff)
-        && rezeptPasstZurSchwierigkeit(rezept, schwierigkeit)
-        && rezeptPasstZumGeschmack(rezept, geschmack)
-        && rezeptPasstZurErnaehrung(rezept, ernaehrung)
-        && rezeptPasstZurDauer(rezept, maxDauer);
+        const gefundeneRezepte = alleRezepte.filter(function (rezept) {
+            return (
+                rezeptPasstZurSuche(rezept, suchbegriff) &&
+                rezeptPasstZurSchwierigkeit(rezept, schwierigkeit) &&
+                rezeptPasstZumGeschmack(rezept, geschmack) &&
+                rezeptPasstZurErnaehrung(rezept, ernaehrung) &&
+                rezeptPasstZurDauer(rezept, maxDauer)
+            );
+        });
+
+        zeigeRezepte(gefundeneRezepte, "rezept-liste");
     });
-
-    zeigeRezepte(gefundeneRezepte , "rezept-liste");
-  });
 });
 
 /**
@@ -620,62 +631,63 @@ document.addEventListener("DOMContentLoaded", function () {
  * @param {HTMLElement} titelElement
  */
 function zeigeRezeptNichtGefunden(titelElement) {
-  titelElement.textContent = "Rezept nicht gefunden";
-  document.getElementById("detail-meta").textContent =
-    "Dieses Rezept existiert nicht oder wurde gelöscht.";
-  document.getElementById("detail-bild").remove();
-  document.getElementById("detail-zutaten").closest("section").hidden = true;
-  document.getElementById("detail-zubereitung").closest("section").hidden = true;
+    titelElement.textContent = "Rezept nicht gefunden";
+    document.getElementById("detail-meta").textContent = "Dieses Rezept existiert nicht oder wurde gelöscht.";
+    document.getElementById("detail-bild").remove();
+    document.getElementById("detail-zutaten").closest("section").hidden = true;
+    document.getElementById("detail-zubereitung").closest("section").hidden = true;
 }
 
 // Detailansicht: Rezept anhand der id aus der URL anzeigen
 document.addEventListener("DOMContentLoaded", function () {
-  const titelElement = document.getElementById("detail-titel");
-  if (titelElement === null) {
-    return;
-  }
-
-  const parameter = new URLSearchParams(window.location.search);
-  const id = Number(parameter.get("id"));
-  const rezept = findeRezeptNachId(id);
-
-  if (rezept === undefined) {
-    zeigeRezeptNichtGefunden(titelElement);
-    return;
-  }
-
-  titelElement.textContent = rezept.titel;
-
-  const bildElement = document.getElementById("detail-bild");
-  bildElement.src = rezept.bild;
-  bildElement.alt = rezept.titel;
-
-  const metaElement = document.getElementById("detail-meta");
-  metaElement.textContent = anzeigeName(rezept.schwierigkeit) + " · " + rezept.dauerMinuten + " Min. · " + rezept.portionen + " Portionen";
-
- rendereZutatenliste(rezept, rezept.portionen);
-
- const portionenEingabe = document.getElementById("portionen-eingabe");
-  portionenEingabe.value = rezept.portionen;
-  portionenEingabe.addEventListener("input", function () {
-    const neuePortionenAnzahl = Number(portionenEingabe.value);
-    if (neuePortionenAnzahl > 0) {
-      rendereZutatenliste(rezept, neuePortionenAnzahl);
+    const titelElement = document.getElementById("detail-titel");
+    if (titelElement === null) {
+        return;
     }
-  });
 
+    const parameter = new URLSearchParams(window.location.search);
+    const id = Number(parameter.get("id"));
+    const rezept = findeRezeptNachId(id);
 
-  const zubereitungListe = document.getElementById("detail-zubereitung");
-  zubereitungListe.innerHTML = rezept.zubereitung.map(function (schritt) {
-    return "<li>" + maskiereHtml(schritt) + "</li>";
-  }).join("");
-
-  const loeschButton = document.getElementById("loesch-button");
-  loeschButton.hidden = !rezept.eigenesRezept;
-  loeschButton.addEventListener("click", function () {
-    const wurdeGeloescht = bestaetigeUndLoescheRezept(rezept.id);
-    if (wurdeGeloescht) {
-      window.location.href = "rezepte.html";
+    if (rezept === undefined) {
+        zeigeRezeptNichtGefunden(titelElement);
+        return;
     }
-  });
+
+    titelElement.textContent = rezept.titel;
+
+    const bildElement = document.getElementById("detail-bild");
+    bildElement.src = rezept.bild;
+    bildElement.alt = rezept.titel;
+
+    const metaElement = document.getElementById("detail-meta");
+    metaElement.textContent =
+        anzeigeName(rezept.schwierigkeit) + " · " + rezept.dauerMinuten + " Min. · " + rezept.portionen + " Portionen";
+
+    rendereZutatenliste(rezept, rezept.portionen);
+
+    const portionenEingabe = document.getElementById("portionen-eingabe");
+    portionenEingabe.value = rezept.portionen;
+    portionenEingabe.addEventListener("input", function () {
+        const neuePortionenAnzahl = Number(portionenEingabe.value);
+        if (neuePortionenAnzahl > 0) {
+            rendereZutatenliste(rezept, neuePortionenAnzahl);
+        }
+    });
+
+    const zubereitungListe = document.getElementById("detail-zubereitung");
+    zubereitungListe.innerHTML = rezept.zubereitung
+        .map(function (schritt) {
+            return "<li>" + maskiereHtml(schritt) + "</li>";
+        })
+        .join("");
+
+    const loeschButton = document.getElementById("loesch-button");
+    loeschButton.hidden = !rezept.eigenesRezept;
+    loeschButton.addEventListener("click", function () {
+        const wurdeGeloescht = bestaetigeUndLoescheRezept(rezept.id);
+        if (wurdeGeloescht) {
+            window.location.href = "rezepte.html";
+        }
+    });
 });
