@@ -204,15 +204,16 @@ form#filter-formular {
     margin-bottom: var(--abstand-mittel);
 }
 
-form#filter-formular fieldset {             /* Fieldset --> Die Filter bekommen alle einen kleinen Rahmen */
+/* Fieldsets in beiden Formularen (Filter und neues Rezept) bekommen denselben dezenten Rahmen */
+fieldset {
     border: 1px solid var(--farbe-rahmen);
     border-radius: var(--radius-button);
     padding: var(--abstand-klein) var(--abstand-mittel);
     margin: 0;
 }
 
-form#filter-formular legend {
-    font-size: 0.8rem;                  /* Textgröße der Überschrift der Filter, bspw. süß oder herzhaft */
+legend {
+    font-size: 0.8rem;                  /* Textgröße der Überschrift, bspw. süß oder herzhaft */
     color: var(--farbe-text-schwach);
     padding: 0 4px;
 }
@@ -233,6 +234,10 @@ form#rezept-form {
     flex-direction: column;                 /* Alle Felder und Buttons stehen untereinander, jedes in einer eigenen Zeile */
     gap: 4px;                               /* Kleiner Abstand zwischen Label und zugehörigem Feld */
     max-width: 600px;                       /* Das Formular wird auf großen Bildschirmen nicht unnötig breit */
+}
+
+form#rezept-form fieldset {
+    margin-top: var(--abstand-mittel);      /* Gleicher Abstand wie bei den anderen Feldgruppen */
 }
 
 form#rezept-form label {
