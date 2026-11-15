@@ -56,7 +56,7 @@ zutatenContainer.addEventListener("click", function (event) {
 
 // Formular-Validierung
 
-const rezeptForm = document.getElementById("rezept-form");
+const rezeptFormular = document.getElementById("rezept-formular");
 
 const titelInput = document.getElementById("titel");
 const titelFehler = document.getElementById("titel-fehler");
@@ -286,7 +286,7 @@ function erstelleRezept(bild) {
 
 // Setzt das Formular komplett zurück: Eingaben, Zutatenzeilen, Fehlertexte und Bild-Button
 function setzeFormularZurueck() {
-    rezeptForm.reset();
+    rezeptFormular.reset();
 
     zutatenContainer.innerHTML = "";
     zutatenContainer.appendChild(erstelleZutatZeile());
@@ -315,7 +315,7 @@ function speichereRezept(neuesRezept) {
     setzeFormularZurueck();
 }
 
-rezeptForm.addEventListener("submit", async function (event) {
+rezeptFormular.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const fehler = pruefeFormular();

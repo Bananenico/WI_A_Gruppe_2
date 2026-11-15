@@ -112,7 +112,7 @@ footer {
 
 /* Rezeptkarten und dessen Grid */
 #rezept-liste,
-#popular-recipes {
+#beliebte-rezepte {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /*--> vollkommen automatisches responsives Layout, dass sich an die Bidlschirmgröße anpasst */
     gap: var(--abstand-mittel);
@@ -229,63 +229,63 @@ form#filter-formular fieldset label {
 }
 
 /* Layout style für das Formular zum Hinzufügen von Rezepten */
-form#rezept-form {
+form#rezept-formular {
     display: flex;
     flex-direction: column;                 /* Alle Felder und Buttons stehen untereinander, jedes in einer eigenen Zeile */
     gap: 4px;                               /* Kleiner Abstand zwischen Label und zugehörigem Feld */
     max-width: 600px;                       /* Das Formular wird auf großen Bildschirmen nicht unnötig breit */
 }
 
-form#rezept-form fieldset {
+form#rezept-formular fieldset {
     margin-top: var(--abstand-mittel);      /* Gleicher Abstand wie bei den anderen Feldgruppen */
 }
 
-form#rezept-form label {
+form#rezept-formular label {
     margin-top: var(--abstand-mittel);      /* Größerer Abstand zwischen den einzelnen Feldgruppen */
     margin-bottom: 0;
 }
 
-form#rezept-form > input,
-form#rezept-form > select,
-form#rezept-form > textarea {
+form#rezept-formular > input,
+form#rezept-formular > select,
+form#rezept-formular > textarea {
     width: 100%;                            /* Nur die direkten Felder, die Zutatenzeilen sind davon ausgenommen */
 }
 
-form#rezept-form textarea {
+form#rezept-formular textarea {
     resize: vertical;                       /* Größe nur nach unten/oben änderbar, nicht aus dem Formular heraus */
 }
 
-form#rezept-form #zutaten-container {
+form#rezept-formular #zutaten-container {
     display: flex;
     flex-direction: column;
     gap: var(--abstand-klein);              /* Abstand zwischen den einzelnen Zutatenzeilen */
 }
 
-form#rezept-form .zutat {
+form#rezept-formular .zutat {
     display: flex;
     flex-wrap: wrap;                        /* Auf schmalen Bildschirmen brechen die Felder einer Zeile um */
     gap: var(--abstand-klein);
 }
 
-form#rezept-form .menge {
+form#rezept-formular .menge {
     width: 90px;
 }
 
-form#rezept-form .einheit {
+form#rezept-formular .einheit {
     width: 110px;
 }
 
-form#rezept-form .zutat-name {
+form#rezept-formular .zutat-name {
     flex: 1;                                /* Der Zutatenname nimmt den restlichen Platz der Zeile ein */
     min-width: 140px;
 }
 
-form#rezept-form #zutat-hinzufuegen {
+form#rezept-formular #zutat-hinzufuegen {
     align-self: flex-start;                 /* Button nur so breit wie sein Text, nicht über die ganze Zeile */
     margin-top: var(--abstand-klein);
 }
 
-form#rezept-form button[type="submit"] {
+form#rezept-formular button[type="submit"] {
     align-self: flex-start;
     margin-top: var(--abstand-mittel);
 }
@@ -392,7 +392,7 @@ form#rezept-form button[type="submit"] {
 }
 
 /* Labels um die Zutatenfelder: kein zusätzlicher Abstand wie bei den anderen Formular-Labels */
-form#rezept-form .zutat label {
+form#rezept-formular .zutat label {
     margin-top: 0;
     margin-bottom: 0;
 }

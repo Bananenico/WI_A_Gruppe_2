@@ -511,14 +511,14 @@ function waehleZufaelligeRezepte(rezepte, anzahl) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const popularContainer = document.getElementById("popular-recipes");
-    if (popularContainer === null) {
+    const beliebteRezepteContainer = document.getElementById("beliebte-rezepte");
+    if (beliebteRezepteContainer === null) {
         return;
     }
     const alleRezepte = ladeRezepte();
     const beliebteRezepte = waehleZufaelligeRezepte(alleRezepte, 3);
-    zeigeRezepte(beliebteRezepte, "popular-recipes");
-    initialisiereLoeschButtons("popular-recipes");
+    zeigeRezepte(beliebteRezepte, "beliebte-rezepte");
+    initialisiereLoeschButtons("beliebte-rezepte");
 });
 
 /**
