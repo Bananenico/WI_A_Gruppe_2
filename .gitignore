@@ -1,1 +1,9 @@
 # WI_A_Gruppe_2
+
+# Editor-Einstellungen
+.vscode/
+
+# Vom Betriebssystem erzeugte Dateien
+Thumbs.db
+Desktop.ini
+.DS_Store
