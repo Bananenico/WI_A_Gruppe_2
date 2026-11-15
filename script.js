@@ -7,7 +7,7 @@
 
 const STORAGE_KEY = "wi_a_gruppe2_rezepte";
 
-// Anzeigenamen fuer die intern gespeicherten Werte (intern bewusst ohne Umlaute)
+// Anzeigenamen für die intern gespeicherten Werte (intern bewusst ohne Umlaute)
 const ANZEIGENAMEN = {
     leicht: "Leicht",
     mittel: "Mittel",
@@ -229,8 +229,8 @@ const startRezepte = [
 ];
 
 /**
- * Laedt die Rezepte aus dem localStorage.
- * Beim allerersten Aufruf werden die Startrezepte gespeichert und zurueckgegeben.
+ * Lädt die Rezepte aus dem localStorage.
+ * Beim allerersten Aufruf werden die Startrezepte gespeichert und zurückgegeben.
  * @returns {Array<Object>} Liste aller Rezepte
  */
 function ladeRezepte() {
@@ -250,8 +250,8 @@ function ladeRezepte() {
 }
 
 /**
- * Speichert die uebergebene Rezeptliste im localStorage.
- * Schlaegt fehl, wenn der Speicher voll ist (z. B. durch grosse Bilder).
+ * Speichert die übergebene Rezeptliste im localStorage.
+ * Schlägt fehl, wenn der Speicher voll ist (z. B. durch große Bilder).
  * @param {Array<Object>} rezepte
  * @returns {boolean} true, wenn das Speichern geklappt hat
  */
@@ -287,7 +287,7 @@ function rundeMenge(menge) {
     return Number.isInteger(gerundet) ? String(gerundet) : gerundet.toFixed(1);
 }
 /**
- * Rendert die Zutatenliste, umgerechnet auf die gewuenschte Portionenzahl.
+ * Rendert die Zutatenliste, umgerechnet auf die gewünschte Portionenzahl.
  * @param {Object} rezept
  * @param {number} portionenAnzahl
  */
@@ -310,7 +310,7 @@ function rendereZutatenliste(rezept, portionenAnzahl) {
 }
 
 /**
- * Ermittelt die naechste freie id fuer ein neues Rezept.
+ * Ermittelt die nächste freie id für ein neues Rezept.
  * @param {Array<Object>} rezepte
  * @returns {number}
  */
@@ -327,7 +327,7 @@ function naechsteId(rezepte) {
 }
 
 /**
- * Fuegt ein neues Rezept zur gespeicherten Rezeptliste hinzu.
+ * Fügt ein neues Rezept zur gespeicherten Rezeptliste hinzu.
  * @param {Object} neuesRezept Rezept ohne id
  * @returns {Object|null} das gespeicherte Rezept inklusive vergebener id,
  *   oder null, wenn der Speicher voll ist
@@ -345,7 +345,7 @@ function fuegeRezeptHinzu(neuesRezept) {
 }
 
 /**
- * Loescht ein Rezept anhand seiner id aus der gespeicherten Rezeptliste.
+ * Löscht ein Rezept anhand seiner id aus der gespeicherten Rezeptliste.
  * @param {number} id
  */
 function loescheRezept(id) {
@@ -359,10 +359,10 @@ function loescheRezept(id) {
 }
 
 /**
- * Fragt nach einer Bestaetigung und loescht ein eigenes Rezept.
- * Das Neuzeichnen der Ansicht uebernimmt die aufrufende Stelle.
+ * Fragt nach einer Bestätigung und löscht ein eigenes Rezept.
+ * Das Neuzeichnen der Ansicht übernimmt die aufrufende Stelle.
  * @param {number} id
- * @returns {boolean} true, wenn das Rezept geloescht wurde
+ * @returns {boolean} true, wenn das Rezept gelöscht wurde
  */
 function bestaetigeUndLoescheRezept(id) {
     const rezept = findeRezeptNachId(id);
@@ -383,7 +383,7 @@ function bestaetigeUndLoescheRezept(id) {
 
 /**
  * Liefert den Anzeigenamen zu einem intern gespeicherten Wert.
- * Unbekannte Werte werden unveraendert zurueckgegeben.
+ * Unbekannte Werte werden unverändert zurückgegeben.
  * @param {string} wert z. B. "suess"
  * @returns {string} z. B. "Süß"
  */
@@ -393,7 +393,7 @@ function anzeigeName(wert) {
 
 /**
  * Wandelt HTML-Sonderzeichen in Entities um, damit Nutzereingaben
- * als Text angezeigt und nicht als HTML ausgefuehrt werden.
+ * als Text angezeigt und nicht als HTML ausgeführt werden.
  * @param {*} wert
  * @returns {string}
  */
@@ -407,7 +407,7 @@ function maskiereHtml(wert) {
 }
 
 /**
- * Erzeugt das HTML fuer eine einzelne Rezeptkarte.
+ * Erzeugt das HTML für eine einzelne Rezeptkarte.
  * @param {Object} rezept
  * @returns {string} HTML-String der Karte
  */
@@ -436,7 +436,7 @@ function erstelleRezeptKarte(rezept) {
 }
 
 /**
- * Zeigt die uebergebene Rezeptliste im angegebenen Container an.
+ * Zeigt die übergebene Rezeptliste im angegebenen Container an.
  * @param {Array<Object>} rezepte
  * @param {string} containerId id des Containers, in den die Karten gerendert werden
  */
@@ -455,7 +455,7 @@ function zeigeRezepte(rezepte, containerId) {
 }
 
 /**
- * Aktiviert die Loesch-Buttons innerhalb eines Containers per Event-Delegation,
+ * Aktiviert die Lösch-Buttons innerhalb eines Containers per Event-Delegation,
  * da die Buttons bei jedem Rendern neu erzeugt werden.
  * @param {string} containerId
  */
@@ -477,7 +477,7 @@ function initialisiereLoeschButtons(containerId) {
             return;
         }
 
-        // Nur die geloeschte Karte entfernen, damit aktive Filter erhalten bleiben
+        // Nur die gelöschte Karte entfernen, damit aktive Filter erhalten bleiben
         button.closest(".rezept-karte").remove();
         if (container.querySelector(".rezept-karte") === null) {
             zeigeRezepte([], containerId);
@@ -493,9 +493,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- * Waehlt eine zufaellige Auswahl von Rezepten aus einer Liste.
+ * Wählt eine zufällige Auswahl von Rezepten aus einer Liste.
  * @param {Array<Object>} rezepte
- * @param {number} anzahl wie viele Rezepte ausgewaehlt werden sollen
+ * @param {number} anzahl wie viele Rezepte ausgewählt werden sollen
  * @returns {Array<Object>}
  */
 function waehleZufaelligeRezepte(rezepte, anzahl) {
@@ -522,7 +522,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- * Prueft, ob ein Rezept zu einem Suchbegriff passt (Titel oder Zutatenname).
+ * Prüft, ob ein Rezept zu einem Suchbegriff passt (Titel oder Zutatenname).
  * @param {Object} rezept
  * @param {string} suchbegriff
  * @returns {boolean}
@@ -543,7 +543,7 @@ function rezeptPasstZurSuche(rezept, suchbegriff) {
 }
 
 /**
- * Prueft, ob ein Rezept zum gewaehlten Geschmack passt.
+ * Prüft, ob ein Rezept zum gewählten Geschmack passt.
  * @param {Object} rezept
  * @param {string} geschmack "alle", "suess" oder "herzhaft"
  * @returns {boolean}
@@ -556,7 +556,7 @@ function rezeptPasstZumGeschmack(rezept, geschmack) {
 }
 
 /**
- * Prueft, ob ein Rezept zur gewaehlten Ernaehrungsart passt.
+ * Prüft, ob ein Rezept zur gewählten Ernährungsart passt.
  * @param {Object} rezept
  * @param {string} ernaehrung "alle", "vegan", "vegetarisch", "fleisch" oder "fisch"
  * @returns {boolean}
@@ -569,7 +569,7 @@ function rezeptPasstZurErnaehrung(rezept, ernaehrung) {
 }
 
 /**
- * Prueft, ob die Zubereitungszeit eines Rezepts innerhalb der gewuenschten Hoechstdauer liegt.
+ * Prüft, ob die Zubereitungszeit eines Rezepts innerhalb der gewünschten Höchstdauer liegt.
  * @param {Object} rezept
  * @param {string} maxDauer Wert aus dem Eingabefeld, leer bedeutet keine Obergrenze
  * @returns {boolean}
@@ -582,7 +582,7 @@ function rezeptPasstZurDauer(rezept, maxDauer) {
 }
 
 /**
- * Prueft, ob ein Rezept zur gewaehlten Schwierigkeit passt.
+ * Prüft, ob ein Rezept zur gewählten Schwierigkeit passt.
  * @param {Object} rezept
  * @param {string} schwierigkeit "alle", "leicht", "mittel" oder "schwer"
  * @returns {boolean}
@@ -594,7 +594,7 @@ function rezeptPasstZurSchwierigkeit(rezept, schwierigkeit) {
     return rezept.schwierigkeit === schwierigkeit;
 }
 
-// Filterformular: bei Absenden nach Suchbegriff, Schwierigkeit, Geschmack, Ernaehrung und Dauer filtern
+// Filterformular: bei Absenden nach Suchbegriff, Schwierigkeit, Geschmack, Ernährung und Dauer filtern
 document.addEventListener("DOMContentLoaded", function () {
     const filterFormular = document.getElementById("filter-formular");
     if (filterFormular === null) {
