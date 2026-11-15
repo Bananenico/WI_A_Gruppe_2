@@ -1,8 +1,8 @@
 // WI_A_Gruppe_2
 
 /**
- * Datenmodell und Startrezepte fuer den Rezeptverwalter.
- * Person C: Daten und Logik
+ * Datenmodell, Speicherung und Seitenlogik des Rezeptverwalters:
+ * Startrezepte, localStorage, Rezeptkarten, Filter, Detailansicht und Löschen.
  */
 
 const STORAGE_KEY = "wi_a_gruppe2_rezepte";
